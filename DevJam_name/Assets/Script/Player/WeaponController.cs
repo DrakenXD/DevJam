@@ -7,6 +7,7 @@ public class WeaponController : MonoBehaviour
     public GameObject bullet;
     public Transform pointShoot;
     [Header("Stats")]
+    public float damage;
     public float bulletvelocity;
     public float nextShot;
     private float N_S;
@@ -36,7 +37,7 @@ public class WeaponController : MonoBehaviour
     public void BulletClone()
     {
         GameObject clone= Instantiate(bullet,pointShoot.position,Quaternion.identity);
-       
+        clone.GetComponent<BulletController>().damage = damage;
         clone.GetComponent<Rigidbody2D>().velocity = transform.right * bulletvelocity;
 
     }

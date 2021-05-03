@@ -11,16 +11,21 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject,lifetime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
             Destroy(gameObject);
         }
-        if (collision.gameObject.CompareTag("Block"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<BlockController>().TakeDamage(1);
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("Shield"))
+        {
+            collision.gameObject.GetComponent<ShieldController>().TakeDamage(damage);
             Destroy(gameObject);
         }
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Wall"))
@@ -28,6 +33,5 @@ public class BulletController : MonoBehaviour
 
             Destroy(gameObject);
         }
-
     }
 }

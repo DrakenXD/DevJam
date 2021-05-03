@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
 
 
-    private Vector2 movement;
+    [SerializeField]private Vector2 movement;
 
 
     [Header("JumpController")]
@@ -20,11 +20,13 @@ public class PlayerController : MonoBehaviour
     public bool IsWall;
     [Header("GroundCheck")]
     public Transform G_check;
-    public float G_radius;
+    public Vector2 G_radius;
     public LayerMask G_layer;
     public bool IsGround;
     [Header("Gravity")]
     public float gravity = 9f;
+    public float timegravity;
+    private float T_G;
 
 
     private Rigidbody2D rb;
@@ -35,15 +37,14 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         stats = GetComponent<PlayerStats>();
+
+        T_G = timegravity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            TakeDamage(10);
-        }
+        
 
         Move();
         Jump();
@@ -75,12 +76,22 @@ public class PlayerController : MonoBehaviour
     }
     public void Jump()
     {
-        if (Input.GetButton("Jump") && stats.extrajumps > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && stats.extrajumps > 0)
         {
+
+            T_G = timegravity;
+
             movement.y = stats.jumpheight;
-            
          
+           
+
+            IsJumping = true;
             stats.extrajumps--;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            IsJumping = false;
         }
 
 
@@ -116,7 +127,18 @@ public class PlayerController : MonoBehaviour
     {
         if (IsWall)
         {
-            movement.y = Input.GetAxis("Vertical");
+            if (Input.GetAxis("Vertical") > .1f)
+            {
+                movement.y = .5f;
+            }else if (Input.GetAxis("Vertical") < -.1f)
+            {
+                movement.y = -.5f;
+            }
+            else
+            {
+                movement.y = 0;
+            }
+            
            
 
         }
@@ -125,7 +147,7 @@ public class PlayerController : MonoBehaviour
     }
     public void W_G_Check()
     {
-        IsGround = Physics2D.OverlapCircle(G_check.position, G_radius, G_layer);
+        IsGround = Physics2D.OverlapBox(G_check.position, G_radius, G_layer);
         IsWall = Physics2D.OverlapBox(W_Check.position, W_radius, W_layer);
     }
     private void Gravity()
@@ -134,17 +156,27 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (IsGround)
+        if ( !IsWall && !IsGround)
         {
-            movement.y = 0;
-          
-            IsJumping = false;
-        }
+            if (T_G<=0)
+            {
+                movement.y = -Time.deltaTime * gravity;
 
-        if (!IsGround || !IsWall)
+                if (IsGround)
+                {
+                    movement.y = 0;
+                }
+
+            }
+            else
+            {
+                T_G -= Time.deltaTime;
+            }
+
+        }
+        else
         {
-            movement.y -= 2*Time.deltaTime;
-            
+            T_G = timegravity;
         }
 
 
@@ -153,7 +185,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(G_check.position, G_radius);
+        Gizmos.DrawWireCube(G_check.position, G_radius);
         Gizmos.DrawWireCube(W_Check.position, W_radius);
     }
 }
