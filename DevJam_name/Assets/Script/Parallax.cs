@@ -5,16 +5,22 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
     public float speed;
-
+    float lastspeed;
 
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.down * speed*Time.deltaTime);
-        if (transform.position.y <= -29)
+        if (lastspeed < speed) lastspeed += .015f;
+
+        transform.Translate(Vector3.down * lastspeed);
+       
+
+
+
+        if (transform.position.y <= 0)
         {
-            transform.position = new Vector2(transform.position.x,29);
+            transform.position = new Vector2(transform.position.x,22);
         }
 
     }
