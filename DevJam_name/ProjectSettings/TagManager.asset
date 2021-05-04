@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - Block
   - Shield
+  - BulletEnemy
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Enemy
   - Bullet
   - Shield
-  - 
+  - BulletEnemy
   - 
   - 
   - 
@@ -46,6 +47,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 3147226697
     locked: 0
   - name: UI
     uniqueID: 1145339325

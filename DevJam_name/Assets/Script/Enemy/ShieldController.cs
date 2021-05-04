@@ -8,6 +8,7 @@ public class ShieldController : MonoBehaviour
     [Header("Stats")]
 
     public float life;
+    public bool isbroken;
 
     private void Start()
     {
@@ -18,9 +19,12 @@ public class ShieldController : MonoBehaviour
     {
         life -= 1;
 
-  
 
-        if (BrokenShield()) Destroy(gameObject);
+
+        if (BrokenShield()) {
+            gameObject.SetActive(false);
+            isbroken = true; ;
+        }
     }
 
     public bool BrokenShield()
@@ -28,6 +32,7 @@ public class ShieldController : MonoBehaviour
         if (life <= 0) 
         {
             return true;
+            
         }
         else
         {

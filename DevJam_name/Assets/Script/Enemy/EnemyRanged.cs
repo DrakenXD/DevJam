@@ -15,7 +15,7 @@ public class EnemyRanged : EnemyController
         {
 
             GameObject clone = Instantiate(bullet, pointShoot.position, Quaternion.identity);
-            clone.GetComponent<BulletController>().damage = damage;
+            clone.GetComponent<Bulletenemy>().damage = damage;
             clone.GetComponent<Rigidbody2D>().velocity = transform.right * bulletvelocity;
             N_T = nextAttack;
         }

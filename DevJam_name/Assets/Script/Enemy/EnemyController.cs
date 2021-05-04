@@ -170,7 +170,7 @@ public class EnemyController : MonoBehaviour
 
         rb.velocity = transform.right * 5f;
     }
-    public void TakeDamage(float dmg)
+    public virtual void TakeDamage(float dmg)
     {
         life -= dmg;
         if (IsDead()) Destroy(gameObject);

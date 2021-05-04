@@ -12,17 +12,27 @@ public class PlayerController : MonoBehaviour
 
     [Header("JumpController")]
     public bool IsJumping;
+    [Header("Timing Attack")]
+    public float nextAttak;
+    private float N_T; 
+
+    [Header("AttackController")]
+    public Transform A_check;
+    public float A_radius;
+    public LayerMask A_layer;
 
     [Header("WallCheck")]
     public Transform W_Check;
     public Vector2 W_radius;
     public LayerMask W_layer;
     public bool IsWall;
+
     [Header("GroundCheck")]
     public Transform G_check;
     public Vector2 G_radius;
     public LayerMask G_layer;
     public bool IsGround;
+
     [Header("Gravity")]
     public float gravity = 9f;
     public float timegravity;
@@ -48,8 +58,35 @@ public class PlayerController : MonoBehaviour
 
         Move();
         Jump();
+        Attack();
         GrabWall();
         W_G_Check();
+    }
+
+    public void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (N_T <= 0)
+            {
+                Collider2D[] hitinfo = Physics2D.OverlapCircleAll(A_check.position, A_radius, A_layer);
+                foreach (Collider2D hit in hitinfo)
+                {
+                    if (hit.gameObject.CompareTag("Enemy"))
+                    {
+                        hit.gameObject.GetComponent<EnemyController>().TakeDamage(1);
+                    }
+                    if (hit.gameObject.CompareTag("Shield"))
+                    {
+                        hit.gameObject.GetComponent<ShieldController>().TakeDamage(1);
+                    }
+                }
+                N_T = nextAttak;
+            }
+            
+        }
+        else N_T -= Time.deltaTime;
+
     }
     private void Move()
     {
@@ -187,6 +224,9 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(G_check.position, G_radius);
         Gizmos.DrawWireCube(W_Check.position, W_radius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(A_check.position, A_radius);
     }
 }
 
