@@ -11,7 +11,14 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lastspeed < speed) lastspeed += .015f;
+        if (lastspeed < speed)
+        {
+            lastspeed += .015f;
+        }
+        else
+        {
+            lastspeed = speed;
+        }
 
         transform.Translate(Vector3.down * lastspeed);
        
