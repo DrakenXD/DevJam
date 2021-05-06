@@ -23,13 +23,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("WallCheck")]
     public Transform W_Check;
-    public Vector2 W_radius;
+    public Transform W_Check2;
+    public float W_radius;
     public LayerMask W_layer;
     public bool IsWall;
 
     [Header("GroundCheck")]
     public Transform G_check;
-    public Vector2 G_radius;
+    public Transform G_check2;
+    public float  G_radius;
     public LayerMask G_layer;
     public bool IsGround;
 
@@ -184,8 +186,10 @@ public class PlayerController : MonoBehaviour
     }
     public void W_G_Check()
     {
-        IsGround = Physics2D.OverlapBox(G_check.position, G_radius, G_layer);
-        IsWall = Physics2D.OverlapBox(W_Check.position, W_radius, W_layer);
+        IsGround = Physics2D.OverlapCircle(G_check.position, G_radius, G_layer);
+        IsGround = Physics2D.OverlapCircle(G_check2.position, G_radius, G_layer);
+        IsWall = Physics2D.OverlapCircle(W_Check.position, W_radius, W_layer);
+        IsWall = Physics2D.OverlapCircle(W_Check2.position, W_radius, W_layer);
     }
     private void Gravity()
     {
@@ -219,11 +223,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(G_check.position, G_radius);
-        Gizmos.DrawWireCube(W_Check.position, W_radius);
+        Gizmos.DrawWireSphere(G_check.position, G_radius);
+        Gizmos.DrawWireSphere(W_Check.position, W_radius);
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(A_check.position, A_radius);

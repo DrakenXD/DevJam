@@ -13,7 +13,7 @@ public class Parallax : MonoBehaviour
     {
         if (lastspeed < speed)
         {
-            lastspeed += .015f;
+            lastspeed += .055f;
         }
         else
         {
