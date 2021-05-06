@@ -36,7 +36,7 @@ public class WeaponController : MonoBehaviour
 
 
 
-        amountTxt.SetText(amountbullets + "/" + Maxbullet);
+        amountTxt.SetText(amountbullets + " /" + Maxbullet);
     }
 
     // Update is called once per frame
@@ -52,7 +52,7 @@ public class WeaponController : MonoBehaviour
             BulletClone();
             N_S = nextShot;
             anim.SetBool("activate", true);
-            amountTxt.SetText(amountbullets+"/"+Maxbullet);
+            amountTxt.SetText(amountbullets+" /"+Maxbullet);
         }
         else
         {
@@ -67,7 +67,7 @@ public class WeaponController : MonoBehaviour
             {
                 amountbullets = Maxbullet;
                 T_T_R = timetoreload;
-                amountTxt.SetText(amountbullets + "/" + Maxbullet);
+                amountTxt.SetText(amountbullets + " /" + Maxbullet);
                 anim.SetBool("activate", true);
             }
             else

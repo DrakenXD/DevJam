@@ -67,11 +67,13 @@ public class EnemyController : MonoBehaviour
             {
                 state = State.Attack_Area;
             }
+
         }
         else
         {
             state = State.Idle;
             sighted.SetActive(false);
+            N_T = nextAttack;
         }
 
     }

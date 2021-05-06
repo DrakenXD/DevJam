@@ -8,6 +8,7 @@ public class EnemyRanged : EnemyController
     public GameObject bullet;
     public Transform pointShoot;
     public float bulletvelocity;
+    public bool granade;
 
     public override void Attack()
     {
@@ -15,8 +16,20 @@ public class EnemyRanged : EnemyController
         {
 
             GameObject clone = Instantiate(bullet, pointShoot.position, Quaternion.identity);
-            clone.GetComponent<Bulletenemy>().damage = damage;
-            clone.GetComponent<Rigidbody2D>().velocity = transform.right * bulletvelocity;
+           
+            
+          
+            if (granade)
+            {
+
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.right.x,transform.up.y) * distance;
+                clone.GetComponent<Bulletenemy>().damage = damage;
+            }
+            else
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = transform.right * bulletvelocity;
+                clone.GetComponent<Bulletenemy>().damage = damage;
+            }
             N_T = nextAttack;
         }
         else
