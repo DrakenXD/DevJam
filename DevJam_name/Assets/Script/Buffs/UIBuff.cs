@@ -14,7 +14,7 @@ public class UIBuff : MonoBehaviour
     {
         if (buff != null)
         {
-            time.SetText("" + buff.usage_time);
+            time.SetText(""+buff.usage_time.ToString("0.00"));
         }
     }
 

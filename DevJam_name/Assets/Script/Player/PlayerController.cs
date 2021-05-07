@@ -43,12 +43,15 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private PlayerStats stats;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         stats = GetComponent<PlayerStats>();
+        anim = GetComponent<Animator>();
+
 
         T_G = timegravity;
     }
@@ -100,16 +103,17 @@ public class PlayerController : MonoBehaviour
         if (movement.x > 0.1f)
         {
             transform.localEulerAngles = new Vector3(0, 0, 0);
-           
+            anim.SetBool("Move",true);
         }
         else if (movement.x < -0.1f)
         {
             transform.localEulerAngles = new Vector3(0, 180, 0);
-           
+            anim.SetBool("Move", true);
         }
         else
         {
             rb.velocity = Vector2.zero;
+            anim.SetBool("Move", false);
         }
         rb.velocity = movement * stats.speed;
     }
@@ -166,19 +170,9 @@ public class PlayerController : MonoBehaviour
     {
         if (IsWall)
         {
-            if (Input.GetAxis("Vertical") > .1f)
-            {
-                movement.y = .5f;
-            }else if (Input.GetAxis("Vertical") < -.1f)
-            {
-                movement.y = -.5f;
-            }
-            else
-            {
-                movement.y = 0;
-            }
-            
-           
+
+            movement.y = -Time.deltaTime * gravity;
+
 
         }
 
@@ -197,7 +191,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if ( !IsWall && !IsGround)
+        if ( !IsWall && !IsGround )
         {
             if (T_G<=0)
             {
