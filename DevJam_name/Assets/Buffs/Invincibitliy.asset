@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e55887c16d69e364eb2bc87837b4cc77, type: 3}
-  m_Name: BulletInfinity
+  m_Name: Invincibitliy
   m_EditorClassIdentifier: 
-  name: BulletInfinity
-  icon: {fileID: 21300000, guid: bd9ce73fa0542854aaa1a96df38d741c, type: 3}
+  name: Invencibilidade
+  icon: {fileID: 21300000, guid: 8a026dac30511044ab5ab910bc675590, type: 3}
   MaxTime: 5
   usage_time: -0.06386771
   isDefaultBuff: 0
-  buffstats: 2
+  buffstats: 3
   buffcomponents:
     _BulletVelocity: 0
     _Speed: 0
-    _BulletInfinity: 1
-    _Invincibility: 0
+    _BulletInfinity: 0
+    _Invincibility: 1
     _LifeRegen: 0
     _Granade: 0

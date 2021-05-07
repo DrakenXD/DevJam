@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField]private Vector2 movement;
+    public bool invincibility;
 
 
     [Header("JumpController")]
     public bool IsJumping;
+
     [Header("Timing Attack")]
     public float nextAttak;
     private float N_T; 
@@ -123,7 +125,7 @@ public class PlayerController : MonoBehaviour
         {
 
             T_G = timegravity;
-
+            movement.y = 0;
             movement.y = stats.jumpheight;
          
            
@@ -146,11 +148,14 @@ public class PlayerController : MonoBehaviour
     }
     public void TakeDamage(float dmg)
     {
-        stats.life -= dmg;
-        if (IsDead())
+        if (!invincibility)
         {
-            //animação de morte
-            
+            stats.life -= dmg;
+            if (IsDead())
+            {
+                //animação de morte
+
+            }
         }
     }
     public bool IsDead()
@@ -171,7 +176,7 @@ public class PlayerController : MonoBehaviour
         if (IsWall)
         {
 
-            movement.y = -Time.deltaTime * gravity;
+            movement.y = -Time.deltaTime *5;
 
 
         }
@@ -187,20 +192,16 @@ public class PlayerController : MonoBehaviour
     }
     private void Gravity()
     {
+
+
        
-
-
-
         if ( !IsWall && !IsGround )
         {
             if (T_G<=0)
             {
                 movement.y = -Time.deltaTime * gravity;
 
-                if (IsGround)
-                {
-                    movement.y = 0;
-                }
+               
 
             }
             else

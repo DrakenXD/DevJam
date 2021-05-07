@@ -13,6 +13,17 @@ public enum BuffStats{
     
 
 }
+[System.Serializable]
+public class BuffComponents
+{
+    public float _BulletVelocity;
+    public float _Speed;
+    public bool _BulletInfinity;
+    public bool _Invincibility;
+    public float _LifeRegen;
+    public int _Granade;
+
+}
 
 
 
@@ -25,4 +36,6 @@ public class Buff : ScriptableObject
     public float usage_time;
     public bool isDefaultBuff=false;
     public BuffStats buffstats;
+    public BuffComponents buffcomponents;
 }
+

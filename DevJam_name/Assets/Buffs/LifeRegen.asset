@@ -10,11 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e55887c16d69e364eb2bc87837b4cc77, type: 3}
-  m_Name: Regen
+  m_Name: LifeRegen
   m_EditorClassIdentifier: 
-  name: Regen
-  icon: {fileID: 21300000, guid: d92edf1d2fcf6ce48add2cc9576cf8bf, type: 3}
-  MaxTime: 5
-  usage_time: -0.024587635
+  name: LifeRegen
+  icon: {fileID: 21300000, guid: efd732c98523e04448c4fcbf7580e2e0, type: 3}
+  MaxTime: 0
+  usage_time: 0
   isDefaultBuff: 0
-  buffstats: 0
+  buffstats: 4
+  buffcomponents:
+    _BulletVelocity: 0
+    _Speed: 0
+    _BulletInfinity: 0
+    _Invincibility: 0
+    _LifeRegen: 20
+    _Granade: 0

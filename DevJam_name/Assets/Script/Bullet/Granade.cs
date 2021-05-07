@@ -22,7 +22,7 @@ public class Granade : Bulletenemy
         }
     }
 
-    public void Explode()
+    public virtual void Explode()
     {
         Collider2D[] hitinfo = Physics2D.OverlapCircleAll(transform.position, radius, layer);
         foreach (Collider2D hit in hitinfo)
@@ -40,7 +40,7 @@ public class Granade : Bulletenemy
     }
 
    
-    private void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
