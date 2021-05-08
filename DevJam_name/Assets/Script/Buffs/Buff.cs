@@ -4,7 +4,6 @@ using UnityEngine;
 
 
 public enum BuffStats{
-    BulletVelocity,
     Speed,
     BulletInfinity,
     Invincibility,

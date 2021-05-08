@@ -12,7 +12,7 @@ public class InventoryBuffs : MonoBehaviour
         instance = this;
     }
 
-    public WeaponController weaponstats;
+    public WeaponController[] weaponstats;
     public PlayerStats playerstats;
     public PlayerController playercontroller;
     public GranadeController granade;
@@ -84,8 +84,11 @@ public class InventoryBuffs : MonoBehaviour
     
         if (_buff.buffstats == BuffStats.BulletInfinity)
         {
-            weaponstats.bulletinfinity = _buff.buffcomponents._BulletInfinity;
-            weaponstats.W_amountbullets = 999;
+            for (int i = 0; i < weaponstats.Length; i++) 
+            {
+                weaponstats[i].bulletinfinity = _buff.buffcomponents._BulletInfinity;
+                weaponstats[i].W_amountbullets = 999;
+            }
             granade.G_amountgranade = 999;
         }
     
@@ -118,8 +121,12 @@ public class InventoryBuffs : MonoBehaviour
     
         if (_buff.buffstats == BuffStats.BulletInfinity)
         {
-            weaponstats.bulletinfinity = false;
-            weaponstats.W_amountbullets = weaponstats.W_Maxbullet;
+            for (int i = 0; i < weaponstats.Length; i++)
+            {
+                weaponstats[i].bulletinfinity = false;
+                weaponstats[i].W_amountbullets = weaponstats[i].W_Maxbullet;
+            }
+          
             granade.G_amountgranade = granade.G_Maxgranade;
         }
     

@@ -11,6 +11,7 @@ TagManager:
   - Block
   - Shield
   - BulletEnemy
+  - Object
   layers:
   - Default
   - TransparentFX

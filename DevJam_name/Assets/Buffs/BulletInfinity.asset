@@ -15,9 +15,9 @@ MonoBehaviour:
   name: BulletInfinity
   icon: {fileID: 21300000, guid: bd9ce73fa0542854aaa1a96df38d741c, type: 3}
   MaxTime: 5
-  usage_time: -0.06386771
+  usage_time: 3.1689858
   isDefaultBuff: 0
-  buffstats: 2
+  buffstats: 1
   buffcomponents:
     _BulletVelocity: 0
     _Speed: 0

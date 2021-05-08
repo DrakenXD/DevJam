@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Granade : Bulletenemy
 {
+    public GameObject EffectExplosion;
     public float timetoexplode;
     public float radius;
     public LayerMask layer;
@@ -14,6 +15,7 @@ public class Granade : Bulletenemy
     {
         if (timetoexplode <= 0)
         {
+           
             Explode();
         }
         else
@@ -25,6 +27,7 @@ public class Granade : Bulletenemy
     public virtual void Explode()
     {
         Collider2D[] hitinfo = Physics2D.OverlapCircleAll(transform.position, radius, layer);
+        Effect();
         foreach (Collider2D hit in hitinfo)
         {
             Vector2 dir = hit.transform.position - transform.position;
@@ -34,11 +37,18 @@ public class Granade : Bulletenemy
             if (hit.gameObject.CompareTag("Player"))
             {
                 hit.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+                
                 Destroy(gameObject);
             }
+
+           
         }
     }
 
+    public void Effect()
+    {
+        Instantiate(EffectExplosion,transform.position,Quaternion.identity);
+    }
    
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
