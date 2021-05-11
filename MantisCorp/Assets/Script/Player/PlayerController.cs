@@ -1,44 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     public Vector2 movement;
     public bool canmove;
-    public float speed;
-    public float jumpheight;
     public int amountjump;
+    public LayerMask whatisground;
 
-    [Header("WallSlide")]
+    [Header("          WallSlide")]
     public float wallSlideSpeed;
     public float walljumprforce;
-    public int facedir =1;
+    public int facedir = 1;
     public Vector2 walljumpdir;
     public bool isWallSliding;
-    [Header("WallCheck")]
+
+    [Header("          WallCheck")]
     public Transform W_Check;
     public float W_distance;
     public bool IsWall;
 
-    [Header("WallCheck")]
+    [Header("          WallCheck")]
     public Transform G_Check;
     public float G_distance;
-    public LayerMask whatisground;
     public bool IsGrounded;
 
+    [Header("          Components")]
     public Rigidbody2D rb;
-    // Start is called before the first frame update
-    void Start()
+    public PlayerStats stats;
+    public WeaponController weapon;
+    private InputPlayer input;
+
+    private void Awake()
     {
+        input = new InputPlayer();
+
         
     }
-
+    private void OnEnable()
+    {
+        input.Enable();
+    }
+    private void OnDisable()
+    {
+        input.Disable();
+    }
     // Update is called once per frame
     void Update()
     {
         
         if(canmove)Move();
+        Shooting();
         JumpControler();
     }
     private void FixedUpdate()
@@ -46,10 +60,19 @@ public class PlayerController : MonoBehaviour
         WallCheck();
         GroundCheck();
     }
+    public void Shooting()
+    {
+        bool isshooting = input.Player.PlayerShoot.triggered;
+        if (isshooting)
+        {
+            weapon.Shoot(stats.damage,facedir);
+        }
+    }
     public void Move()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
+        movement.x = input.Player.PlayerMove.ReadValue<float>();
+        //movement.x = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(movement.x * stats.speed, rb.velocity.y);
 
         if (isWallSliding)
         {
@@ -84,17 +107,20 @@ public class PlayerController : MonoBehaviour
     }
     public void JumpControler()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        bool isjump = input.Player.PlayerJump.triggered;
+        if (isjump)
         {
             if (amountjump > 0 && !isWallSliding)
             {
                 rb.velocity = Vector2.zero;
-                amountjump--;
-                rb.AddForce(Vector2.up * jumpheight, ForceMode2D.Impulse);
-            }else if (isWallSliding)
-            {
 
+                amountjump--;
+
+                rb.AddForce(Vector2.up * stats.jumpheight, ForceMode2D.Impulse);
+            } else if (isWallSliding) 
+            { 
                 Vector2 ForceJump = new Vector2(walljumprforce * walljumpdir.x * -facedir, walljumprforce * walljumpdir.y);
+                
                 rb.velocity = Vector2.zero;
 
                 rb.AddForce(ForceJump, ForceMode2D.Impulse);
@@ -108,7 +134,8 @@ public class PlayerController : MonoBehaviour
     public void GroundCheck()
     {
         IsGrounded = Physics2D.OverlapCircle(G_Check.position, G_distance, whatisground);
-
+        
+      
     }
     public void WallCheck()
     {
