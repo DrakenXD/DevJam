@@ -5,11 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject lent;
     public Vector2 movement;
+    public bool move;
     public bool canmove;
     public int amountjump;
     public LayerMask whatisground;
+
+
+    [Header("ShootController")]
     public bool isshooting;
+    public int MaxIndexBullet;
+    protected int IndexBullet;
+    public float delayNextShoot;
+    protected float D_N_S;
+
     public bool inputShoot;
 
     [Header("          WallSlide")]
@@ -34,8 +44,9 @@ public class PlayerController : MonoBehaviour
     public PlayerStats stats;
     public WeaponController weapon;
     public AnimatorController anim;
-    private InputPlayer input;
+    protected InputPlayer input;
 
+    private bool test;
     private void Awake()
     {
         input = new InputPlayer();
@@ -53,8 +64,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(canmove || isshooting) Move();
+        bool visionx = input.Player.PlayerVisionNight.triggered;
+        if (visionx && !test)
+        {
+            test = true;
+            lent.SetActive(true);
+        }else if (visionx && test)
+        {
+            test = false;
+            lent.SetActive(false);
+        }
+
+        if (canmove) Move();
         Shooting();
         JumpControler();
     }
@@ -66,22 +87,53 @@ public class PlayerController : MonoBehaviour
     public void Shooting()
     {
         inputShoot = input.Player.PlayerShoot.triggered;
-        if (inputShoot)
+       
+        if (inputShoot && !isshooting)
         {
+            
             isshooting = true;
-            if (isshooting)
+
+        }
+
+        if (!move && isshooting)
+        {
+            anim.ChangeAnimator("Shoot");
+        }
+        else if (move && isshooting)
+        {
+            anim.ChangeAnimator("MoveShoot");
+        }
+
+        if (isshooting)
+        {
+            if (IndexBullet > 0)
             {
-                StartCoroutine("ShootDelay");
-                anim.ChangeAnimator("Shoot");
-                weapon.Shoot(stats.damage, facedir);
+                if (D_N_S <= 0)
+                {
+                    D_N_S = delayNextShoot;
+                    IndexBullet--;
+                    weapon.Shoot(stats.damage, facedir);
+                }
+                else D_N_S -= Time.deltaTime;
+
+            }
+            else
+            {
+                isshooting = false;
+               
+                D_N_S = delayNextShoot;
+         
+                IndexBullet = MaxIndexBullet;
             }
         }
+
+
+
+
     }
-    IEnumerator ShootDelay()
-    {
-        yield return new WaitForSeconds(.3f);
-        isshooting = false;
-    }
+
+  
+ 
     public void Move()
     {
         movement.x = input.Player.PlayerMove.ReadValue<float>();
@@ -97,6 +149,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (movement.x != 0)
+        {
+            if (!isshooting) anim.ChangeAnimator("Move"); ;
+            move = true;
+        }
+        else move = false;
+
         if (movement.x > 0.1f)
         {
             transform.eulerAngles = new Vector3(0,0,0);
@@ -108,7 +167,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            anim.ChangeAnimator("Idle");
+            if(!isshooting) anim.ChangeAnimator("Idle");
         }
     }
     IEnumerator StopMove()

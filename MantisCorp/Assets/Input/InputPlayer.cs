@@ -41,6 +41,14 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""PlayerVisionNight"",
+                    ""type"": ""Button"",
+                    ""id"": ""ab044b33-4d75-4721-9228-a2d3184b5edd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -98,6 +106,17 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""action"": ""PlayerShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9692518c-f80d-4d9d-a65d-8caa30916c37"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerVisionNight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -109,6 +128,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         m_Player_PlayerMove = m_Player.FindAction("PlayerMove", throwIfNotFound: true);
         m_Player_PlayerJump = m_Player.FindAction("PlayerJump", throwIfNotFound: true);
         m_Player_PlayerShoot = m_Player.FindAction("PlayerShoot", throwIfNotFound: true);
+        m_Player_PlayerVisionNight = m_Player.FindAction("PlayerVisionNight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -161,6 +181,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_PlayerMove;
     private readonly InputAction m_Player_PlayerJump;
     private readonly InputAction m_Player_PlayerShoot;
+    private readonly InputAction m_Player_PlayerVisionNight;
     public struct PlayerActions
     {
         private @InputPlayer m_Wrapper;
@@ -168,6 +189,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         public InputAction @PlayerMove => m_Wrapper.m_Player_PlayerMove;
         public InputAction @PlayerJump => m_Wrapper.m_Player_PlayerJump;
         public InputAction @PlayerShoot => m_Wrapper.m_Player_PlayerShoot;
+        public InputAction @PlayerVisionNight => m_Wrapper.m_Player_PlayerVisionNight;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -186,6 +208,9 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @PlayerShoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerShoot;
                 @PlayerShoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerShoot;
                 @PlayerShoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerShoot;
+                @PlayerVisionNight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerVisionNight;
+                @PlayerVisionNight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerVisionNight;
+                @PlayerVisionNight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerVisionNight;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -199,6 +224,9 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @PlayerShoot.started += instance.OnPlayerShoot;
                 @PlayerShoot.performed += instance.OnPlayerShoot;
                 @PlayerShoot.canceled += instance.OnPlayerShoot;
+                @PlayerVisionNight.started += instance.OnPlayerVisionNight;
+                @PlayerVisionNight.performed += instance.OnPlayerVisionNight;
+                @PlayerVisionNight.canceled += instance.OnPlayerVisionNight;
             }
         }
     }
@@ -208,5 +236,6 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         void OnPlayerMove(InputAction.CallbackContext context);
         void OnPlayerJump(InputAction.CallbackContext context);
         void OnPlayerShoot(InputAction.CallbackContext context);
+        void OnPlayerVisionNight(InputAction.CallbackContext context);
     }
 }

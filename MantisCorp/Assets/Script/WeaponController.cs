@@ -18,9 +18,7 @@ public class WeaponController : MonoBehaviour
         
         Vector2 force = new Vector2(ShootDir.x * bulletvelocity * dir, ShootDir.y * bulletvelocity);
 
-
-
-       clone.GetComponent<BulletController>().damage += _dmg;
+        clone.GetComponent<BulletPlayer>().DamageAdditional += _dmg;
         
         clone.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
     }

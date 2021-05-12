@@ -2,23 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class BulletPlayer : MonoBehaviour
 {
-    public float damage;
-    public string nameEnemy;
-
+    public float Bulletdamage;
+    public float DamageAdditional;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
-            Debug.Log("dsadas");
+            float dmg = Bulletdamage + DamageAdditional;
+
+            collision.gameObject.GetComponent<EnemyController>().TakeDamage(dmg);
+            
+            Destroy(gameObject);
         }
 
         if (collision.gameObject.CompareTag("Ground") )
         {
+
+
             Destroy(gameObject);
         }
     }
