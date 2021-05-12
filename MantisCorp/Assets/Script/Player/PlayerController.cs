@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public bool canmove;
     public int amountjump;
     public LayerMask whatisground;
+    public bool isshooting;
+    public bool inputShoot;
 
     [Header("          WallSlide")]
     public float wallSlideSpeed;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public PlayerStats stats;
     public WeaponController weapon;
+    public AnimatorController anim;
     private InputPlayer input;
 
     private void Awake()
@@ -51,7 +54,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-        if(canmove)Move();
+        if(canmove || isshooting) Move();
         Shooting();
         JumpControler();
     }
@@ -62,11 +65,22 @@ public class PlayerController : MonoBehaviour
     }
     public void Shooting()
     {
-        bool isshooting = input.Player.PlayerShoot.triggered;
-        if (isshooting)
+        inputShoot = input.Player.PlayerShoot.triggered;
+        if (inputShoot)
         {
-            weapon.Shoot(stats.damage,facedir);
+            isshooting = true;
+            if (isshooting)
+            {
+                StartCoroutine("ShootDelay");
+                anim.ChangeAnimator("Shoot");
+                weapon.Shoot(stats.damage, facedir);
+            }
         }
+    }
+    IEnumerator ShootDelay()
+    {
+        yield return new WaitForSeconds(.3f);
+        isshooting = false;
     }
     public void Move()
     {
@@ -91,6 +105,10 @@ public class PlayerController : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
             facedir = -1;
+        }
+        else
+        {
+            anim.ChangeAnimator("Idle");
         }
     }
     IEnumerator StopMove()
