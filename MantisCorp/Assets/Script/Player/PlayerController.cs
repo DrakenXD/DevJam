@@ -14,13 +14,22 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("ShootController")]
+    public float MaxAmmuntion;
+    [SerializeField]protected float Ammuntion;
     public bool isshooting;
     public int MaxIndexBullet;
     protected int IndexBullet;
     public float delayNextShoot;
     protected float D_N_S;
-
+    public float TimeToShoot;
+    private float T_T_S;
     public bool inputShoot;
+    [Header("ReloadWeapon")]
+
+    public bool IsReloading;
+    public float TimeToRecharge;
+    protected float T_T_R;
+
 
     [Header("          WallSlide")]
     public float wallSlideSpeed;
@@ -61,6 +70,11 @@ public class PlayerController : MonoBehaviour
     {
         input.Disable();
     }
+
+    private void Start()
+    {
+        Ammuntion = MaxAmmuntion;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -87,11 +101,25 @@ public class PlayerController : MonoBehaviour
     public void Shooting()
     {
         inputShoot = input.Player.PlayerShoot.triggered;
-       
-        if (inputShoot && !isshooting)
+
+        if (!IsReloading)
         {
-            
-            isshooting = true;
+            if (inputShoot && !isshooting && T_T_S <= 0)
+            {
+                T_T_S = TimeToShoot;
+                isshooting = true;
+
+            }
+            else T_T_S -= Time.deltaTime;
+        }
+        else
+        {
+            if (T_T_R <= 0)
+            {
+                Ammuntion = MaxAmmuntion;
+                T_T_R = TimeToRecharge;
+                IsReloading = false;
+            }else T_T_R -= Time.deltaTime;
 
         }
 
@@ -112,7 +140,10 @@ public class PlayerController : MonoBehaviour
                 {
                     D_N_S = delayNextShoot;
                     IndexBullet--;
+                    Ammuntion--;
                     weapon.Shoot(stats.damage, facedir);
+
+                    if (Ammuntion <= 0) IsReloading = true;
                 }
                 else D_N_S -= Time.deltaTime;
 
@@ -121,7 +152,7 @@ public class PlayerController : MonoBehaviour
             {
                 isshooting = false;
                
-                D_N_S = delayNextShoot;
+               
          
                 IndexBullet = MaxIndexBullet;
             }
