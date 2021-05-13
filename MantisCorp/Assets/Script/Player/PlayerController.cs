@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject lent;
+    public GameObject VisionNight;
+    public GameObject VisionNormal;
     public Vector2 movement;
     public bool move;
     public bool canmove;
@@ -20,16 +21,20 @@ public class PlayerController : MonoBehaviour
     public int MaxIndexBullet;
     protected int IndexBullet;
     public float delayNextShoot;
-    protected float D_N_S;
+    [SerializeField] protected float D_N_S;
     public float TimeToShoot;
-    private float T_T_S;
+    [SerializeField] protected float T_T_S;
     public bool inputShoot;
-    [Header("ReloadWeapon")]
 
+    [Header("ReloadWeapon")]
     public bool IsReloading;
     public float TimeToRecharge;
     protected float T_T_R;
 
+    [Header("GravityController")]
+    public float gravity;
+    public float timetoGravity;
+    protected float T_T_G;
 
     [Header("          WallSlide")]
     public float wallSlideSpeed;
@@ -53,6 +58,7 @@ public class PlayerController : MonoBehaviour
     public PlayerStats stats;
     public WeaponController weapon;
     public AnimatorController anim;
+    public PlayerUI UI;
     protected InputPlayer input;
 
     private bool test;
@@ -74,23 +80,32 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Ammuntion = MaxAmmuntion;
+        UI.TextBullet(Ammuntion, MaxAmmuntion);
+        T_T_S = 0;
+        D_N_S = 0;
     }
     // Update is called once per frame
     void Update()
     {
         bool visionx = input.Player.PlayerVisionNight.triggered;
+
         if (visionx && !test)
         {
             test = true;
-            lent.SetActive(true);
+            VisionNormal.SetActive(false);
+            VisionNight.SetActive(true);
+          
         }else if (visionx && test)
         {
             test = false;
-            lent.SetActive(false);
+            VisionNight.SetActive(false);
+            VisionNormal.SetActive(true);
         }
 
         if (canmove) Move();
+
         Shooting();
+
         JumpControler();
     }
     private void FixedUpdate()
@@ -117,6 +132,7 @@ public class PlayerController : MonoBehaviour
             if (T_T_R <= 0)
             {
                 Ammuntion = MaxAmmuntion;
+                UI.TextBullet(Ammuntion, MaxAmmuntion);
                 T_T_R = TimeToRecharge;
                 IsReloading = false;
             }else T_T_R -= Time.deltaTime;
@@ -139,8 +155,11 @@ public class PlayerController : MonoBehaviour
                 if (D_N_S <= 0)
                 {
                     D_N_S = delayNextShoot;
+
                     IndexBullet--;
                     Ammuntion--;
+
+                    UI.TextBullet(Ammuntion,MaxAmmuntion);
                     weapon.Shoot(stats.damage, facedir);
 
                     if (Ammuntion <= 0) IsReloading = true;
@@ -168,7 +187,7 @@ public class PlayerController : MonoBehaviour
     public void Move()
     {
         movement.x = input.Player.PlayerMove.ReadValue<float>();
-        //movement.x = Input.GetAxisRaw("Horizontal");
+
         rb.velocity = new Vector2(movement.x * stats.speed, rb.velocity.y);
 
         if (isWallSliding)
@@ -225,6 +244,7 @@ public class PlayerController : MonoBehaviour
                 amountjump--;
 
                 rb.AddForce(Vector2.up * stats.jumpheight, ForceMode2D.Impulse);
+
             } else if (isWallSliding) 
             { 
                 Vector2 ForceJump = new Vector2(walljumprforce * walljumpdir.x * -facedir, walljumprforce * walljumpdir.y);
@@ -242,9 +262,22 @@ public class PlayerController : MonoBehaviour
     public void GroundCheck()
     {
         IsGrounded = Physics2D.OverlapCircle(G_Check.position, G_distance, whatisground);
-        
-      
+
+        if (!IsGrounded && !IsWall)
+        {
+            if (T_T_G <= 0)
+            {
+                rb.velocity += Vector2.down * gravity;
+            }
+            else
+            {
+                T_T_G -= Time.deltaTime;
+            }
+        }
+
+        if (IsGrounded || IsWall) T_T_G = timetoGravity;
     }
+   
     public void WallCheck()
     {
         IsWall = Physics2D.Raycast(W_Check.position, transform.right, W_distance, whatisground);
