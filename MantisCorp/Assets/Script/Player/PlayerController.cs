@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public bool move;
     public bool canmove;
     public int amountjump;
+    public bool isJumping;
     public LayerMask whatisground;
 
 
@@ -66,7 +67,6 @@ public class PlayerController : MonoBehaviour
     {
         input = new InputPlayer();
 
-        
     }
     private void OnEnable()
     {
@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       /*
         bool visionx = input.Player.PlayerVisionNight.triggered;
 
         if (visionx && !test)
@@ -100,22 +101,34 @@ public class PlayerController : MonoBehaviour
             test = false;
             VisionNight.SetActive(false);
             VisionNormal.SetActive(true);
-        }
-
-        if (canmove) Move();
+        }*/
 
         Shooting();
+ 
+        Move();
 
-        JumpControler();
+
+
+
     }
     private void FixedUpdate()
     {
+
         WallCheck();
         GroundCheck();
     }
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        movement.x = context.ReadValue<float>();
+    }
+    public void OnShooting(InputAction.CallbackContext context)
+    {
+        inputShoot = context.ReadValueAsButton();
+
+    }
+
     public void Shooting()
     {
-        inputShoot = input.Player.PlayerShoot.triggered;
 
         if (!IsReloading)
         {
@@ -159,7 +172,7 @@ public class PlayerController : MonoBehaviour
                     IndexBullet--;
                     Ammuntion--;
 
-                    UI.TextBullet(Ammuntion,MaxAmmuntion);
+                    UI.TextBullet(Ammuntion, MaxAmmuntion);
                     weapon.Shoot(stats.damage, facedir);
 
                     if (Ammuntion <= 0) IsReloading = true;
@@ -170,9 +183,9 @@ public class PlayerController : MonoBehaviour
             else
             {
                 isshooting = false;
-               
-               
-         
+
+
+
                 IndexBullet = MaxIndexBullet;
             }
         }
@@ -182,17 +195,21 @@ public class PlayerController : MonoBehaviour
 
     }
 
-  
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        isJumping = context.ReadValueAsButton();
+        JumpControler();
+    }
  
     public void Move()
     {
-        movement.x = input.Player.PlayerMove.ReadValue<float>();
+         
 
         rb.velocity = new Vector2(movement.x * stats.speed, rb.velocity.y);
 
         if (isWallSliding)
         {
-            if (rb.velocity.y < -wallSlideSpeed);
+            if (rb.velocity.y < -wallSlideSpeed) ;
             {
 
                 rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
@@ -208,16 +225,17 @@ public class PlayerController : MonoBehaviour
 
         if (movement.x > 0.1f)
         {
-            transform.eulerAngles = new Vector3(0,0,0);
+            transform.eulerAngles = new Vector3(0, 0, 0);
             facedir = 1;
-        }else if (movement.x < -0.1f)
+        }
+        else if (movement.x < -0.1f)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
             facedir = -1;
         }
         else
         {
-            if(!isshooting) anim.ChangeAnimator("Idle");
+            if (!isshooting) anim.ChangeAnimator("Idle");
         }
     }
     IEnumerator StopMove()
@@ -226,7 +244,7 @@ public class PlayerController : MonoBehaviour
 
         transform.localScale = transform.localScale.x == 1 ? new Vector2(-1,1) : Vector2.one;
         
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(1f);
 
         transform.localScale = Vector2.one;
 
@@ -234,8 +252,8 @@ public class PlayerController : MonoBehaviour
     }
     public void JumpControler()
     {
-        bool isjump = input.Player.PlayerJump.triggered;
-        if (isjump)
+       
+        if (isJumping)
         {
             if (amountjump > 0 && !isWallSliding)
             {
@@ -245,7 +263,7 @@ public class PlayerController : MonoBehaviour
 
                 rb.AddForce(Vector2.up * stats.jumpheight, ForceMode2D.Impulse);
 
-            } else if (isWallSliding) 
+            }else if (isWallSliding) 
             { 
                 Vector2 ForceJump = new Vector2(walljumprforce * walljumpdir.x * -facedir, walljumprforce * walljumpdir.y);
                 
@@ -277,7 +295,6 @@ public class PlayerController : MonoBehaviour
 
         if (IsGrounded || IsWall) T_T_G = timetoGravity;
     }
-   
     public void WallCheck()
     {
         IsWall = Physics2D.Raycast(W_Check.position, transform.right, W_distance, whatisground);
