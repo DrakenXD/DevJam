@@ -62,11 +62,10 @@ public class PlayerController : MonoBehaviour
     public PlayerUI UI;
     protected InputPlayer input;
 
-    private bool test;
     private void Awake()
     {
         input = new InputPlayer();
-
+        anim.ChangeAnimator("Idle");
     }
     private void OnEnable()
     {
@@ -80,43 +79,31 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Ammuntion = MaxAmmuntion;
+
         UI.TextBullet(Ammuntion, MaxAmmuntion);
+
         T_T_S = 0;
         D_N_S = 0;
+
+        
     }
     // Update is called once per frame
     void Update()
     {
-       /*
-        bool visionx = input.Player.PlayerVisionNight.triggered;
-
-        if (visionx && !test)
-        {
-            test = true;
-            VisionNormal.SetActive(false);
-            VisionNight.SetActive(true);
-          
-        }else if (visionx && test)
-        {
-            test = false;
-            VisionNight.SetActive(false);
-            VisionNormal.SetActive(true);
-        }*/
-
+       
         Shooting();
- 
-        Move();
-
-
-
+        
+        JumpControler();
+        
+        if(canmove) Move();
 
     }
     private void FixedUpdate()
     {
-
         WallCheck();
         GroundCheck();
     }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         movement.x = context.ReadValue<float>();
@@ -126,7 +113,11 @@ public class PlayerController : MonoBehaviour
         inputShoot = context.ReadValueAsButton();
 
     }
-
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        isJumping = context.ReadValueAsButton();
+        
+    }
     public void Shooting()
     {
 
@@ -148,7 +139,8 @@ public class PlayerController : MonoBehaviour
                 UI.TextBullet(Ammuntion, MaxAmmuntion);
                 T_T_R = TimeToRecharge;
                 IsReloading = false;
-            }else T_T_R -= Time.deltaTime;
+            }
+            else T_T_R -= Time.deltaTime;
 
         }
 
@@ -194,13 +186,6 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        isJumping = context.ReadValueAsButton();
-        JumpControler();
-    }
- 
     public void Move()
     {
          
@@ -235,7 +220,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (!isshooting) anim.ChangeAnimator("Idle");
+            if (!isshooting && !move) anim.ChangeAnimator("Idle");
         }
     }
     IEnumerator StopMove()
@@ -243,8 +228,8 @@ public class PlayerController : MonoBehaviour
         canmove = false;
 
         transform.localScale = transform.localScale.x == 1 ? new Vector2(-1,1) : Vector2.one;
-        
-        yield return new WaitForSeconds(1f);
+
+        yield return new WaitForSeconds(.3f);
 
         transform.localScale = Vector2.one;
 
@@ -252,29 +237,27 @@ public class PlayerController : MonoBehaviour
     }
     public void JumpControler()
     {
-       
-        if (isJumping)
+
+        if (amountjump > 0 && !isWallSliding && isJumping)
         {
-            if (amountjump > 0 && !isWallSliding)
-            {
-                rb.velocity = Vector2.zero;
+            rb.velocity = Vector2.zero;
 
-                amountjump--;
+            amountjump--;
 
-                rb.AddForce(Vector2.up * stats.jumpheight, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * stats.jumpheight, ForceMode2D.Impulse);
 
-            }else if (isWallSliding) 
-            { 
-                Vector2 ForceJump = new Vector2(walljumprforce * walljumpdir.x * -facedir, walljumprforce * walljumpdir.y);
-                
-                rb.velocity = Vector2.zero;
-
-                rb.AddForce(ForceJump, ForceMode2D.Impulse);
-
-                StartCoroutine("StopMove");
-            }
         }
-    
+        else if (isWallSliding && isJumping)
+        {
+            Vector2 ForceJump = new Vector2(walljumprforce * walljumpdir.x * -facedir, walljumprforce * walljumpdir.y);
+
+            rb.velocity = Vector2.zero;
+
+            rb.AddForce(ForceJump, ForceMode2D.Impulse);
+
+            StartCoroutine("StopMove");
+        }
+
         if (IsGrounded) amountjump = 1;
     }
     public void GroundCheck()

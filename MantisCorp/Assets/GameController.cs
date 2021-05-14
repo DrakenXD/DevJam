@@ -1,21 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameController : MonoBehaviour
 {
-    public int numberofPlayers;
-    public GameObject prefabPlayer;
+    public CinemachineTargetGroup _cinemachine;
 
-    public List<PlayerController> activeplayerControllers;
-    // Update is called once per frame
-    void Update()
+    public GameObject[] players;
+
+    public int amountplayers;
+
+    private void Start()
     {
-        activeplayerControllers = new List<PlayerController>();
+ 
+    }
+    private void Update()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
 
-        for (int i = 0; i < numberofPlayers; i++) 
+        if (amountplayers < players.Length)
         {
-
+            _cinemachine.AddMember(players[amountplayers].transform, 1, 0);
+            amountplayers++;
         }
+
+       
     }
 }

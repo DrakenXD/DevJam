@@ -340,7 +340,7 @@ MonoBehaviour:
   delayNextShoot: 0.1
   D_N_S: 0
   TimeToShoot: 0.5
-  T_T_S: 0.39222488
+  T_T_S: 0
   inputShoot: 0
   IsReloading: 0
   TimeToRecharge: 2
