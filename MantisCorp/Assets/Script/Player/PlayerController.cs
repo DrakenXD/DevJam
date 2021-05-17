@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         input = new InputPlayer();
-        anim.ChangeAnimator("Idle");
+     
     }
     private void OnEnable()
     {
@@ -90,12 +90,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
+        if(canmove) Move();
         Shooting();
         
         JumpControler();
         
-        if(canmove) Move();
 
     }
     private void FixedUpdate()
@@ -120,7 +120,6 @@ public class PlayerController : MonoBehaviour
     }
     public void Shooting()
     {
-
         if (!IsReloading)
         {
             if (inputShoot && !isshooting && T_T_S <= 0)
@@ -144,17 +143,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (!move && isshooting)
-        {
-            anim.ChangeAnimator("Shoot");
-        }
-        else if (move && isshooting)
-        {
-            anim.ChangeAnimator("MoveShoot");
-        }
 
         if (isshooting)
         {
+
+
             if (IndexBullet > 0)
             {
                 if (D_N_S <= 0)
@@ -179,6 +172,15 @@ public class PlayerController : MonoBehaviour
 
 
                 IndexBullet = MaxIndexBullet;
+            }
+
+            if (!move)
+            {
+                anim.ChangeAnimator("Shoot");
+            }
+            else if (move)
+            {
+                anim.ChangeAnimator("MoveShoot");
             }
         }
 
@@ -220,7 +222,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (!isshooting && !move) anim.ChangeAnimator("Idle");
+            if (!isshooting) anim.ChangeAnimator("Idle");
         }
     }
     IEnumerator StopMove()
@@ -296,7 +298,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(W_Check.position,new Vector3(W_Check.position.x+ W_distance, W_Check.position.y,0));
+        Gizmos.DrawLine(W_Check.position,new Vector3(W_Check.position.x + W_distance, W_Check.position.y,0));
         Gizmos.DrawWireSphere(G_Check.position,G_distance);
     }
 }

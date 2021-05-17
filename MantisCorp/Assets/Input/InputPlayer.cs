@@ -22,7 +22,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""name"": ""PlayerMove"",
                     ""type"": ""Value"",
                     ""id"": ""a56f70d8-0527-4791-8aa5-05d29ddd4e62"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -40,7 +40,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""id"": ""b2e81ea6-9334-410e-9473-43e5e1d370d4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)""
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""PlayerVisionNight"",

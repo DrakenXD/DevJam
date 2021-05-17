@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
     public EnemyStats stats;
     public Stage state;
 
-    [Header("Follow Enemy")]
+    [Header("          Follow Enemy")]
     public bool targetinlineRight;
     public float F_distanceRight;
     public bool targetinlineLeft;
@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
     
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         StateController();
     }
@@ -49,7 +49,13 @@ public class EnemyController : MonoBehaviour
 
                 SearchTarget();
 
-
+                if (target.position.x > transform.position.x)
+                {
+                    transform.localEulerAngles = new Vector3(0,0,0);
+                }else if (target.position.x < transform.position.x)
+                {
+                    transform.localEulerAngles = new Vector3(0, 180, 0);
+                }
 
                 if (distance > stopdistance)
                 {
@@ -93,7 +99,7 @@ public class EnemyController : MonoBehaviour
 
         }
 
-        Debug.Log(state);
+       
     }
 
     public enum Stage
@@ -149,14 +155,17 @@ public class EnemyController : MonoBehaviour
         stats.life -= dmg;
 
         if (IsDead())
+        {
             state = Stage.Dead;
-            Destroy(gameObject); 
+            Destroy(gameObject);
+        }
+            
 
-        Debug.Log(dmg);
+     
     }
     public bool IsDead()
     {
-        return stats.life < 0;
+        return stats.life <= 0;
     }
 
     private void OnDrawGizmos()
