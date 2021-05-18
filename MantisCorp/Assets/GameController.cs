@@ -11,17 +11,15 @@ public class GameController : MonoBehaviour
 
     public int amountplayers;
 
-    private void Start()
-    {
- 
-    }
-    private void Update()
+   
+    private void LateUpdate()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
 
         if (amountplayers < players.Length)
         {
             _cinemachine.AddMember(players[amountplayers].transform, 1, 0);
+
             amountplayers++;
         }
 

@@ -193,10 +193,10 @@ MonoBehaviour:
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
-  m_Color: {r: 1, g: 0.91940284, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.8077208, b: 0, a: 1}
   m_Intensity: 100
   m_LightVolumeOpacity: 1
-  m_ApplyToSortingLayers: 0000000063779a8933c9f4c7515eee80
+  m_ApplyToSortingLayers: 00000000052cf5a763779a8933c9f4c7b1dbc81a515eee80
   m_LightCookieSprite: {fileID: 21300000, guid: 0522f56a31e575e4bbf365092d62d616, type: 3}
   m_UseNormalMap: 0
   m_LightOrder: 0

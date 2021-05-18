@@ -188,6 +188,16 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    public void TakeDamage(float dmg)
+    {
+        stats.life -= dmg;
+        if (IsDead()) Debug.Log("Morrue");
+    }
+
+    public bool IsDead()
+    {
+        return stats.life <= 0;
+    }
     public void Move()
     {
          

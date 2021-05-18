@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour
     public EnemyStats stats;
     public Stage state;
 
+    public bool IsAttacking;
+
     [Header("          Follow Enemy")]
     public bool targetinlineRight;
     public float F_distanceRight;
@@ -28,7 +30,7 @@ public class EnemyController : MonoBehaviour
     private float TimeToSearch =2f;
     private float T_T_S;
 
-    
+    public Animator anim;
 
     // Update is called once per frame
     public virtual void Update()
@@ -44,10 +46,12 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            SearchTarget();
+
             if (targetinlineLeft || targetinlineRight)
             {
 
-                SearchTarget();
+               
 
                 if (target.position.x > transform.position.x)
                 {
@@ -57,25 +61,30 @@ public class EnemyController : MonoBehaviour
                     transform.localEulerAngles = new Vector3(0, 180, 0);
                 }
 
-                if (distance > stopdistance)
+
+
+                
+                if (distance > attackdistance)
                 {
-                    if (distance < attackdistance)
-                    {
-                        state = Stage.Attack;
-                    }
-                    else
-                    {
-                        Isfollowing = true;
-                        state = Stage.Follow;
-                    }
+                    state = Stage.Follow;
+                    Isfollowing = true;
+
                 }
                 else
                 {
-                    state = Stage.Idle;
-                    Isfollowing = false;
+                   
+                    IsAttacking = true;
+                    state = Stage.LoadingAttack;
                 }
-                
 
+
+
+
+            }
+            else
+            {
+                state = Stage.Idle;
+                Isfollowing = false;
             }
         }
 
@@ -91,8 +100,12 @@ public class EnemyController : MonoBehaviour
                 break;
             case Stage.Patrol:
                 break;
-            case Stage.Attack:
+            case Stage.LoadingAttack:
+                LoadingAttack();
                 FollowTarget(transform.position);
+                break;
+            case Stage.Attack:
+                Attack();
                 break;
             case Stage.Dead:
                 break;
@@ -107,10 +120,11 @@ public class EnemyController : MonoBehaviour
         Idle,
         Patrol,
         Follow,
+        LoadingAttack,
         Attack,
         Dead,
     }
-    public void FollowTarget(Vector3 _pos)
+    public virtual void FollowTarget(Vector3 _pos)
     {
         transform.position = Vector2.MoveTowards(transform.position, _pos, stats.speed * Time.deltaTime);
     }
@@ -163,6 +177,14 @@ public class EnemyController : MonoBehaviour
 
      
     }
+    public virtual void LoadingAttack()
+    {
+
+    }
+    public virtual void Attack()
+    {
+
+    }
     public bool IsDead()
     {
         return stats.life <= 0;
@@ -174,10 +196,16 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + F_distanceRight, transform.position.y, 1));
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + F_distanceLeft, transform.position.y, 1));
 
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, maxdistance);
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackdistance);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, stopdistance);
     }
+
+
+   
 }
