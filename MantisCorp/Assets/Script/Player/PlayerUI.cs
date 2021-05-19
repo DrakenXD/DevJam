@@ -9,21 +9,34 @@ public class PlayerUI : MonoBehaviour
 {
     public int IDPlayer;
 
-    public GameObject UIAmountBullet;
+    [Header("UI")]
+    public GameObject UICanvas;
+    public Image Imagelife;
+    public TextMeshProUGUI AmountBullet;
+    
 
     public PlayerInput inputplayer;
 
-    public TextMeshProUGUI AmountBullet;
+    
+
+
 
     private void Start()
     {
         IDPlayer = inputplayer.user.index;
 
-        if (IDPlayer == 1) UIAmountBullet.transform.position = new Vector2(300, 140);
+        if (IDPlayer == 1) UICanvas.transform.position = new Vector2(300, 140);
+    }
+
+    public void BarLife(float min, float max)
+    {
+        
+        Imagelife.fillAmount = min / max;
     }
 
     public void TextBullet(float min, float max)
     {
+      
         AmountBullet.SetText(min + " /" + max);
     }
 }

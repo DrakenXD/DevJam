@@ -4,19 +4,32 @@ using UnityEngine;
 
 public class AnimatorController : MonoBehaviour
 {
-    public Animator anim;
-    private string currentname;
+    public Animator animPlayer;
+    private string currentnamePlayer;
+    public Animator animUI;
+    private string currentnameUI;
 
-
-    public void ChangeAnimator(string newName)
+    public void ChangeAnimatorPlayer(string newName)
     {
-        if (currentname == newName) return;
+        if (currentnamePlayer == newName) return;
 
-        if (newName != currentname)
+        if (newName != currentnamePlayer)
         {
-            anim.Play(newName);
+            animPlayer.Play(newName);
         }
 
-        currentname = newName;
+        currentnamePlayer = newName;
+    }
+
+    public void ChangeAnimatorUI(string newName)
+    {
+        if (currentnameUI == newName) return;
+
+        if (newName != currentnameUI)
+        {
+            animUI.Play(newName);
+        }
+
+        currentnameUI = newName;
     }
 }

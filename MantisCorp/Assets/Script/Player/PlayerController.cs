@@ -44,6 +44,9 @@ public class PlayerController : MonoBehaviour
     public Vector2 walljumpdir;
     public bool isWallSliding;
 
+    [Header("StopMove")]
+    public float Stopmove = .3f;
+
     [Header("          WallCheck")]
     public Transform W_Check;
     public float W_distance;
@@ -60,7 +63,9 @@ public class PlayerController : MonoBehaviour
     public WeaponController weapon;
     public AnimatorController anim;
     public PlayerUI UI;
+
     protected InputPlayer input;
+
 
     private void Awake()
     {
@@ -83,20 +88,16 @@ public class PlayerController : MonoBehaviour
         UI.TextBullet(Ammuntion, MaxAmmuntion);
 
         T_T_S = 0;
-        D_N_S = 0;
-
-        
+        D_N_S = 0;   
     }
     // Update is called once per frame
     void Update()
     {
-
         if(canmove) Move();
+     
         Shooting();
         
         JumpControler();
-        
-
     }
     private void FixedUpdate()
     {
@@ -134,6 +135,7 @@ public class PlayerController : MonoBehaviour
         {
             if (T_T_R <= 0)
             {
+                
                 Ammuntion = MaxAmmuntion;
                 UI.TextBullet(Ammuntion, MaxAmmuntion);
                 T_T_R = TimeToRecharge;
@@ -154,15 +156,24 @@ public class PlayerController : MonoBehaviour
                 {
                     D_N_S = delayNextShoot;
 
+                    anim.ChangeAnimatorUI("BulletText");
+
                     IndexBullet--;
                     Ammuntion--;
 
                     UI.TextBullet(Ammuntion, MaxAmmuntion);
+
                     weapon.Shoot(stats.damage, facedir);
 
                     if (Ammuntion <= 0) IsReloading = true;
                 }
-                else D_N_S -= Time.deltaTime;
+                else
+                {
+                    anim.ChangeAnimatorUI("State");
+
+                    D_N_S -= Time.deltaTime;
+                }
+                    
 
             }
             else
@@ -176,11 +187,11 @@ public class PlayerController : MonoBehaviour
 
             if (!move)
             {
-                anim.ChangeAnimator("Shoot");
+                anim.ChangeAnimatorPlayer("Shoot");
             }
             else if (move)
             {
-                anim.ChangeAnimator("MoveShoot");
+                anim.ChangeAnimatorPlayer("MoveShoot");
             }
         }
 
@@ -191,7 +202,15 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         stats.life -= dmg;
+
+        UI.BarLife(stats.life, stats.maxlife);
+
+     
+
         if (IsDead()) Debug.Log("Morrue");
+
+
+
     }
 
     public bool IsDead()
@@ -215,7 +234,7 @@ public class PlayerController : MonoBehaviour
 
         if (movement.x != 0)
         {
-            if (!isshooting) anim.ChangeAnimator("Move"); ;
+            if (!isshooting) anim.ChangeAnimatorPlayer("Move"); ;
             move = true;
         }
         else move = false;
@@ -232,7 +251,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (!isshooting) anim.ChangeAnimator("Idle");
+            if (!isshooting) anim.ChangeAnimatorPlayer("Idle");
         }
     }
     IEnumerator StopMove()
@@ -246,6 +265,31 @@ public class PlayerController : MonoBehaviour
         transform.localScale = Vector2.one;
 
         canmove = true;
+    }
+
+    public void StopMoveTime()
+    {
+
+       
+
+        if (!canmove)
+        {
+            if (Stopmove <= 0)
+            {
+                transform.localScale = Vector2.one;
+
+                canmove = true;
+                Stopmove = .3f;
+            }
+            else
+            {
+                
+                Stopmove -= Time.deltaTime;
+                transform.localScale = transform.localScale.x == 1 ? new Vector2(-1, 1) : Vector2.one;
+            }
+        }
+
+        
     }
     public void JumpControler()
     {
@@ -267,8 +311,12 @@ public class PlayerController : MonoBehaviour
 
             rb.AddForce(ForceJump, ForceMode2D.Impulse);
 
-            StartCoroutine("StopMove");
+            //StartCoroutine("StopMove");
+
+            canmove = false;
         }
+
+        StopMoveTime();
 
         if (IsGrounded) amountjump = 1;
     }
