@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
                 {
                     D_N_S = delayNextShoot;
 
-                    anim.ChangeAnimatorUI("BulletText");
+                    anim.animUI.SetBool("Activate", true);
 
                     IndexBullet--;
                     Ammuntion--;
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    anim.ChangeAnimatorUI("State");
+                    
 
                     D_N_S -= Time.deltaTime;
                 }
@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
             {
                 isshooting = false;
 
-
+                anim.animUI.SetBool("Activate", false);
 
                 IndexBullet = MaxIndexBullet;
             }
