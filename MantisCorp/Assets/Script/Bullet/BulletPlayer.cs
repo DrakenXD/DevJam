@@ -20,7 +20,7 @@ public class BulletPlayer : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Shield"))
         {
-            collision.gameObject.GetComponent<ShieldController>().TakeDamage();
+
 
             Destroy(gameObject);
         }
