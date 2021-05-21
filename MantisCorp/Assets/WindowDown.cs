@@ -16,9 +16,9 @@ public class WindowDown : MonoBehaviour
 
         transform.Translate(Vector2.down* velocitydata * Time.deltaTime);
 
-        if (transform.position.y <= -15)
+        if (transform.position.y <= -30)
         {
-            transform.position = new Vector3 (0,15,transform.position.z);
+            transform.position = new Vector3 (transform.position.x, 30,transform.position.z);
         }
     }
 }
