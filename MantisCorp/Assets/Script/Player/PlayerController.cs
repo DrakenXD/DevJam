@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject VisionNight;
-    public GameObject VisionNormal;
+  
+
     public Vector2 movement;
     public bool move;
     public bool canmove;
@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public bool inputShoot;
 
     [Header("ReloadWeapon")]
+    public GameObject ReloadIndicator;
     public bool IsReloading;
     public float TimeToRecharge;
     protected float T_T_R;
@@ -83,26 +84,43 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+   
+     
         Ammuntion = MaxAmmuntion;
 
         UI.TextBullet(Ammuntion, MaxAmmuntion);
 
+        T_T_R = TimeToRecharge;
+
         T_T_S = 0;
+        
         D_N_S = 0;   
     }
     // Update is called once per frame
     void Update()
     {
-        if(canmove) Move();
-     
-        Shooting();
-        
-        JumpControler();
+        if (IsDead())
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            if (canmove) Move();
+
+            if (canmove) Shooting();
+
+            JumpControler();
+        }
     }
     private void FixedUpdate()
     {
         WallCheck();
         GroundCheck();
+    }
+
+    public void Spawn()
+    {
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -135,13 +153,17 @@ public class PlayerController : MonoBehaviour
         {
             if (T_T_R <= 0)
             {
-                
+                ReloadIndicator.SetActive(false);
                 Ammuntion = MaxAmmuntion;
                 UI.TextBullet(Ammuntion, MaxAmmuntion);
                 T_T_R = TimeToRecharge;
                 IsReloading = false;
             }
-            else T_T_R -= Time.deltaTime;
+            else
+            {
+                T_T_R -= Time.deltaTime;
+                ReloadIndicator.SetActive(true);
+            }
 
         }
 
@@ -279,7 +301,7 @@ public class PlayerController : MonoBehaviour
                 transform.localScale = Vector2.one;
 
                 canmove = true;
-                Stopmove = .3f;
+                Stopmove = .5f;
             }
             else
             {

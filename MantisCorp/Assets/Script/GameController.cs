@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
         if (IsMultiPlayer)
         {
             players = GameObject.FindGameObjectsWithTag("Player");
+           
             if (amountplayers < AddPlayers)
             {
                 input.JoinPlayer();
@@ -63,7 +64,6 @@ public class GameController : MonoBehaviour
 
                 amountplayers++;
             }
-            else Debug.Log("Sem Jogador");
         }else
         {
             if (amountplayers < 1)

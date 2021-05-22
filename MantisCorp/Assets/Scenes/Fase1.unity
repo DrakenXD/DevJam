@@ -20315,7 +20315,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: -0.11596937, y: 0.00000000453932, z: 5.2999805e-10, w: 0.9932528}
+  m_LocalRotation: {x: -0.11596937, y: -0.00000000494473, z: -5.7733257e-10, w: 0.9932528}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -20691,8 +20691,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e25b4d9882cec40bcba73f78bd41e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Solo: {fileID: 1284387254}
-  Multiplayer: {fileID: 1316339657}
+  Solo: {fileID: 1316339657}
+  Multiplayer: {fileID: 1284387254}
   _camfollow: {fileID: 1316339659}
   _cinemachine: {fileID: 319912292}
   prefabPlayer: {fileID: 5083594265928839836, guid: 960cf646c68884d46847a19dc14d39e1, type: 3}
@@ -20744,7 +20744,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284387254}
-  m_LocalRotation: {x: -0, y: -1.0559109e-10, z: -2.4997893e-11, w: 1}
+  m_LocalRotation: {x: 0.000000014901159, y: -0.000000013680293, z: -0.0000000032386949, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -21453,10 +21453,6 @@ PrefabInstance:
     - target: {fileID: 403300944019950168, guid: 41df5b5c90219e3479d2c9a14444cec3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 403300944019950170, guid: 41df5b5c90219e3479d2c9a14444cec3, type: 3}
-      propertyPath: Maxspeed
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 403300944019950172, guid: 41df5b5c90219e3479d2c9a14444cec3, type: 3}
       propertyPath: m_Name
