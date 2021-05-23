@@ -11,7 +11,7 @@ public class WindowDown : MonoBehaviour
     {
         if (velocitydata < velocityDown)
         {
-            velocitydata += 0.050f;
+            velocitydata += 0.1f;
         }
 
         transform.Translate(Vector2.down* velocitydata * Time.deltaTime);

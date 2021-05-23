@@ -10,6 +10,7 @@ TagManager:
   - Object
   - Bullet
   - Shield
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

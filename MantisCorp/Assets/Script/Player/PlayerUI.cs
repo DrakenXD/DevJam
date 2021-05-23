@@ -25,7 +25,7 @@ public class PlayerUI : MonoBehaviour
     {
         IDPlayer = inputplayer.user.index;
 
-        if (IDPlayer == 1) UICanvas.transform.position = new Vector2(UICanvas.transform.position.x - 1500, UICanvas.transform.position.y);
+        if (IDPlayer == 1) UICanvas.transform.position = new Vector2(UICanvas.transform.position.x - 475, UICanvas.transform.position.y);
     }
 
     public void BarLife(float min, float max)

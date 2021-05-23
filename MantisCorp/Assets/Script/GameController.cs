@@ -19,8 +19,6 @@ public class GameController : MonoBehaviour
     public CinemachineTargetGroup _cinemachine;
 
     [Header("          Players")]
-    public GameObject prefabPlayer;
-    public Transform spawnpoint;
     public GameObject player;
     public GameObject[] players;
 
@@ -35,6 +33,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+
         instance = this;
 
         if (IsMultiPlayer)
@@ -48,26 +47,36 @@ public class GameController : MonoBehaviour
             Multiplayer.SetActive(false);
         }
 
+        
+
     }
 
     private void LateUpdate()
     {
         if (IsMultiPlayer)
         {
-            players = GameObject.FindGameObjectsWithTag("Player");
+          
            
             if (amountplayers < AddPlayers)
             {
+                players = GameObject.FindGameObjectsWithTag("Player");
+
                 input.JoinPlayer();
 
                 _cinemachine.AddMember(players[amountplayers].transform, 1, 0);
 
                 amountplayers++;
+
             }
-        }else
+
+           
+
+        }
+        else
         {
             if (amountplayers < 1)
             {
+              
                 input.JoinPlayer();
 
                 player = GameObject.FindGameObjectWithTag("Player");
@@ -77,6 +86,7 @@ public class GameController : MonoBehaviour
                 amountplayers++;
             }
 
+         
         }
         
         enemys = GameObject.FindGameObjectsWithTag("Enemy");

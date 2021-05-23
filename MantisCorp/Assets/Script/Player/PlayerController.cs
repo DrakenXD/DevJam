@@ -14,6 +14,13 @@ public class PlayerController : MonoBehaviour
     public bool isJumping;
     public LayerMask whatisground;
 
+    [Header("Spawnpoint")]
+    public Transform Spawnpoint;
+    public SpriteRenderer sprite;
+    public Collider2D coll;
+    public bool isDead;
+    public float TimeRespawnPoint;
+    private float T_R_P;
 
     [Header("ShootController")]
     public float MaxAmmuntion;
@@ -84,8 +91,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-   
-     
+        Spawnpoint = GameObject.FindGameObjectWithTag("SpawnPoint").transform;
+
+        T_R_P = TimeRespawnPoint;
+
         Ammuntion = MaxAmmuntion;
 
         UI.TextBullet(Ammuntion, MaxAmmuntion);
@@ -99,9 +108,26 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsDead())
+        if (isDead)
         {
-            gameObject.SetActive(false);
+            isDead = true;
+
+            sprite.enabled = false;
+            coll.enabled = false;
+            rb.gravityScale = 0;
+
+            if (T_R_P <= 0)
+            {
+                sprite.enabled = true;
+                coll.enabled = true;
+                rb.gravityScale = 1;
+
+                isDead = false;
+
+                RestoreMaxlife();
+                T_R_P = TimeRespawnPoint;
+            }
+            else T_R_P -= Time.deltaTime;
         }
         else
         {
@@ -118,9 +144,13 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
     }
 
-    public void Spawn()
+    public void RestoreMaxlife()
     {
+        stats.life = stats.maxlife;
 
+        transform.position = Spawnpoint.position;
+
+        UI.BarLife(stats.life, stats.maxlife);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -229,7 +259,7 @@ public class PlayerController : MonoBehaviour
 
      
 
-        if (IsDead()) Debug.Log("Morrue");
+        if (IsDead()) isDead = true; 
 
 
 

@@ -258,12 +258,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -20315,7 +20315,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: -0.11596937, y: -0.00000000494473, z: -5.7733257e-10, w: 0.9932528}
+  m_LocalRotation: {x: -0.11596938, y: 0.0000000039555497, z: 4.618387e-10, w: 0.9932528}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -20511,7 +20511,7 @@ GameObject:
   - component: {fileID: 1040154992}
   m_Layer: 0
   m_Name: Spawpoint
-  m_TagString: Untagged
+  m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20523,12 +20523,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040154991}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.12, y: -1.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1176720308}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1041383330
 GameObject:
@@ -20643,7 +20643,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_JoinAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Join
       m_Type: 0
@@ -20651,23 +20651,7 @@ MonoBehaviour:
       m_Id: 9c871df9-3adc-4d3a-b3ea-2be2f7897a2c
       m_Processors: 
       m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 10b2a43e-b7a9-47b7-8d79-6e8cb4688513
-        m_Path: <Keyboard>/enter
-        m_Interactions: Press
-        m_Processors: 
-        m_Groups: 
-        m_Action: Join
-        m_Flags: 0
-      - m_Name: 
-        m_Id: 31b4f46b-8a8a-4243-9fcf-733af3317202
-        m_Path: <Gamepad>/start
-        m_Interactions: Press
-        m_Processors: 
-        m_Groups: 
-        m_Action: Join
-        m_Flags: 0
+      m_SingletonActionBindings: []
     m_Reference: {fileID: 0}
   m_PlayerPrefab: {fileID: 5083594265928839836, guid: 960cf646c68884d46847a19dc14d39e1, type: 3}
   m_SplitScreen: 0
@@ -20695,8 +20679,6 @@ MonoBehaviour:
   Multiplayer: {fileID: 1284387254}
   _camfollow: {fileID: 1316339659}
   _cinemachine: {fileID: 319912292}
-  prefabPlayer: {fileID: 5083594265928839836, guid: 960cf646c68884d46847a19dc14d39e1, type: 3}
-  spawnpoint: {fileID: 1040154992}
   player: {fileID: 0}
   players: []
   input: {fileID: 1176720306}
@@ -20713,8 +20695,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: -1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1040154992}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20744,7 +20725,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284387254}
-  m_LocalRotation: {x: 0.000000014901159, y: -0.000000013680293, z: -0.0000000032386949, w: 1}
+  m_LocalRotation: {x: -0, y: 0.000000011487582, z: 0.000000002719589, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -21390,8 +21371,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130416719}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 376819719}
   - {fileID: 302948428}
@@ -21400,7 +21381,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 102}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &403300943312672925
