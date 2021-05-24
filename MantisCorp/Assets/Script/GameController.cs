@@ -90,6 +90,9 @@ public class GameController : MonoBehaviour
         }
         
         enemys = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if (enemys.Length == 0) SpawnEnemys.NexTwave = true;
+
         amountEnemys.SetText("" + enemys.Length);
     }
 }

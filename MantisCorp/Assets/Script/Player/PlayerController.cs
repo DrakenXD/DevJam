@@ -125,9 +125,17 @@ public class PlayerController : MonoBehaviour
                 isDead = false;
 
                 RestoreMaxlife();
+
+                UI.TextTimeRevive(T_R_P, false);
+
                 T_R_P = TimeRespawnPoint;
+
             }
-            else T_R_P -= Time.deltaTime;
+            else
+            {
+                UI.TextTimeRevive(T_R_P, true);
+                T_R_P -= Time.deltaTime;
+            }
         }
         else
         {

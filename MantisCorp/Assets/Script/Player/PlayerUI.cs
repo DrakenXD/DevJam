@@ -13,7 +13,8 @@ public class PlayerUI : MonoBehaviour
     public GameObject UICanvas;
     public Image Imagelife;
     public TextMeshProUGUI AmountBullet;
-    
+    public GameObject UIRevive;
+    public TextMeshProUGUI timerevive;
 
     public PlayerInput inputplayer;
 
@@ -38,5 +39,10 @@ public class PlayerUI : MonoBehaviour
     {
       
         AmountBullet.SetText(min + " /" + max);
+    }
+    public void TextTimeRevive(float time, bool isActive)
+    {
+        UIRevive.SetActive(isActive);
+        timerevive.SetText(time.ToString("0"));
     }
 }
