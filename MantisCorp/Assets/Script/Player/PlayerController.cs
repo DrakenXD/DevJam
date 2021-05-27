@@ -116,6 +116,7 @@ public class PlayerController : MonoBehaviour
             coll.enabled = false;
             rb.gravityScale = 0;
 
+            rb.velocity= Vector2.zero;
             if (T_R_P <= 0)
             {
                 sprite.enabled = true;

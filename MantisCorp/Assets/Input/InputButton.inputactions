@@ -1,0 +1,71 @@
+{
+    "name": "InputButton",
+    "maps": [
+        {
+            "name": "Joystick",
+            "id": "21ca41bb-53ce-4a41-b58e-77eabf0d9938",
+            "actions": [
+                {
+                    "name": "StickUp",
+                    "type": "PassThrough",
+                    "id": "d38ccb20-35b6-4aeb-a48f-e45f94b4dc75",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "StickDown",
+                    "type": "PassThrough",
+                    "id": "266b10c6-bff6-4db2-8290-a31f5b907098",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Enter",
+                    "type": "PassThrough",
+                    "id": "e2695474-992e-44f8-b818-9b54266f8e64",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a8255616-20d0-4028-9596-7f8a9d883e11",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd2d4048-34b7-4aa0-b0d0-7fa64eb8d844",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StickDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56bdc93b-944c-49a8-9452-fde1cfadf9d2",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

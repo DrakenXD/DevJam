@@ -7,27 +7,24 @@ public class TypeEnemys
 {
     public string NameEnemy;
     public GameObject prefabEnemy;
-    [Range(0,1)] public float chanceToSpawnMax;
-    [Range(0, 1)] public float chanceToSpawnMin;
+    [Range(0, 1)] public float ChMax;
+    [Range(0, 1)] public float ChMin;
 }
 
 public class SpawnEnemys : MonoBehaviour
 {
+    [Header("          Components NextWave")]
     public static bool NexTwave;
     public float TimeNextWave;
     public float T_N_W;
 
+    [Header("          Components NextSpawn")]
     public TypeEnemys[] enemys;
     public Transform[] enemySpawnpoint;
     public int AmountSpawn;
     public int amount;
     public float NextSpawn;
     private float N_S;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -44,7 +41,7 @@ public class SpawnEnemys : MonoBehaviour
 
                     for (int i = 0; i < enemys.Length; i++)
                     {
-                        if (Random.value < enemys[i].chanceToSpawnMax && Random.value > enemys[i].chanceToSpawnMin)
+                        if (Random.value < enemys[i].ChMax && Random.value > enemys[i].ChMin)
                         {
                             Instantiate(enemys[i].prefabEnemy, enemySpawnpoint[indexSpawn].position, Quaternion.identity);
                             Debug.Log(enemys[i].NameEnemy + " Spawn");
@@ -59,8 +56,6 @@ public class SpawnEnemys : MonoBehaviour
                 {
                     N_S -= Time.deltaTime;
                 }
-
-                
             }
 
             if (amount == AmountSpawn)

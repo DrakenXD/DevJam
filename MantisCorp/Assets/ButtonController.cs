@@ -3,22 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler , IPointerClickHandler 
 {
-    public Animator anim;
+    public int IdButton;
+    public static int id;
 
+    public GameObject ActiveGameObject;
+    public GameObject DisableGameObject;
+
+    public Animator anim;
     public Vector3 sizenormal;
     public Vector3 sizemodificado;
 
+    public void EnterInButton()
+    {
+        MenuButtonJoystick.indexUpdate = IdButton;
+
+        transform.localScale = sizemodificado;
+    }
+    public void ExitInButton()
+    {
+        MenuButtonJoystick.indexLast = IdButton;
+
+        transform.localScale = sizenormal;
+    }
+
+    public void ClickInButton()
+    {
+      
+
+        ActiveGameObject.SetActive(true);
+
+        DisableGameObject.SetActive(false);
+
+        MenuButtonJoystick.indexUpdate = 0;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        ClickInButton();
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        anim.SetBool("Activate",true);
-        transform.localScale = sizemodificado;
+        EnterInButton();   
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        anim.SetBool("Activate", false);
-        transform.localScale = sizenormal;
+        ExitInButton();
     }
 }
