@@ -336,6 +336,7 @@ MonoBehaviour:
   anim: {fileID: 38819209}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
+  menu: {fileID: 0}
 --- !u!95 &38819209
 Animator:
   serializedVersion: 3
@@ -642,6 +643,7 @@ MonoBehaviour:
   anim: {fileID: 101227386}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
+  menu: {fileID: 0}
 --- !u!95 &101227386
 Animator:
   serializedVersion: 3
@@ -814,6 +816,7 @@ MonoBehaviour:
   anim: {fileID: 102179604}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
+  menu: {fileID: 0}
 --- !u!95 &102179604
 Animator:
   serializedVersion: 3
@@ -1891,6 +1894,7 @@ MonoBehaviour:
   anim: {fileID: 317831633}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
+  menu: {fileID: 0}
 --- !u!95 &317831633
 Animator:
   serializedVersion: 3
@@ -2298,6 +2302,7 @@ MonoBehaviour:
   anim: {fileID: 472349734}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
+  menu: {fileID: 0}
 --- !u!95 &472349734
 Animator:
   serializedVersion: 3
@@ -3139,6 +3144,7 @@ MonoBehaviour:
   anim: {fileID: 645392581}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
+  menu: {fileID: 0}
 --- !u!95 &645392581
 Animator:
   serializedVersion: 3
@@ -3803,6 +3809,7 @@ MonoBehaviour:
   anim: {fileID: 778152454}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
+  menu: {fileID: 0}
 --- !u!95 &778152454
 Animator:
   serializedVersion: 3
@@ -6469,6 +6476,7 @@ MonoBehaviour:
   anim: {fileID: 1520045237}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
+  menu: {fileID: 0}
 --- !u!95 &1520045237
 Animator:
   serializedVersion: 3
@@ -6641,6 +6649,7 @@ MonoBehaviour:
   anim: {fileID: 1534720471}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
+  menu: {fileID: 0}
 --- !u!95 &1534720471
 Animator:
   serializedVersion: 3
@@ -6813,6 +6822,7 @@ MonoBehaviour:
   anim: {fileID: 1581721839}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
+  menu: {fileID: 0}
 --- !u!95 &1581721839
 Animator:
   serializedVersion: 3
@@ -7984,6 +7994,7 @@ MonoBehaviour:
   anim: {fileID: 2087664256}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
+  menu: {fileID: 0}
 --- !u!95 &2087664256
 Animator:
   serializedVersion: 3

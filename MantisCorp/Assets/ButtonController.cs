@@ -5,6 +5,19 @@ using UnityEngine.EventSystems;
 
 public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler , IPointerClickHandler 
 {
+    private MenuController menu;
+    private void Start()
+    {
+        menu = GameObject.FindGameObjectWithTag("Menu").GetComponent<MenuController>();
+    }
+
+    [Header("Type button")]
+    public bool StartGame;
+    public bool Controller;
+    public bool Credits;
+    public bool Quit;
+
+
     public int IdButton;
     public static int id;
 
@@ -14,6 +27,8 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public Animator anim;
     public Vector3 sizenormal;
     public Vector3 sizemodificado;
+
+   
 
     public void EnterInButton()
     {
@@ -30,11 +45,14 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void ClickInButton()
     {
-      
+        if (StartGame)
+        {
 
-        ActiveGameObject.SetActive(true);
+        }
+         
+        if(ActiveGameObject != null)ActiveGameObject.SetActive(true);
 
-        DisableGameObject.SetActive(false);
+        if(DisableGameObject != null) DisableGameObject.SetActive(false);
 
         MenuButtonJoystick.indexUpdate = 0;
     }
