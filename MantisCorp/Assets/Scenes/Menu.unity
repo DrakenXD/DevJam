@@ -330,13 +330,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99fc2356a4dec042bbbdaf85bdd6377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGame: 0
+  Controller: 0
+  Credits: 0
+  Quit: 0
   IdButton: 0
   ActiveGameObject: {fileID: 0}
   DisableGameObject: {fileID: 0}
   anim: {fileID: 38819209}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
-  menu: {fileID: 0}
 --- !u!95 &38819209
 Animator:
   serializedVersion: 3
@@ -637,13 +640,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99fc2356a4dec042bbbdaf85bdd6377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGame: 0
+  Controller: 0
+  Credits: 0
+  Quit: 0
   IdButton: 0
   ActiveGameObject: {fileID: 0}
   DisableGameObject: {fileID: 0}
   anim: {fileID: 101227386}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
-  menu: {fileID: 0}
 --- !u!95 &101227386
 Animator:
   serializedVersion: 3
@@ -810,13 +816,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99fc2356a4dec042bbbdaf85bdd6377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGame: 0
+  Controller: 0
+  Credits: 0
+  Quit: 0
   IdButton: 0
   ActiveGameObject: {fileID: 0}
   DisableGameObject: {fileID: 0}
   anim: {fileID: 102179604}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
-  menu: {fileID: 0}
 --- !u!95 &102179604
 Animator:
   serializedVersion: 3
@@ -1888,13 +1897,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99fc2356a4dec042bbbdaf85bdd6377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGame: 0
+  Controller: 0
+  Credits: 0
+  Quit: 0
   IdButton: 0
   ActiveGameObject: {fileID: 1780105647}
   DisableGameObject: {fileID: 853459758}
   anim: {fileID: 317831633}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
-  menu: {fileID: 0}
 --- !u!95 &317831633
 Animator:
   serializedVersion: 3
@@ -2233,7 +2245,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: a13ecffa3b83d6442a969cd088e9e0c7, type: 3}
-  m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
+  m_Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2296,13 +2308,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99fc2356a4dec042bbbdaf85bdd6377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGame: 0
+  Controller: 0
+  Credits: 0
+  Quit: 0
   IdButton: 3
   ActiveGameObject: {fileID: 0}
   DisableGameObject: {fileID: 0}
   anim: {fileID: 472349734}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
-  menu: {fileID: 0}
 --- !u!95 &472349734
 Animator:
   serializedVersion: 3
@@ -2975,7 +2990,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -15
   m_Sprite: {fileID: 7482667652216324306, guid: a13ecffa3b83d6442a969cd088e9e0c7, type: 3}
-  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
+  m_Color: {r: 0.14150941, g: 0.14084192, b: 0.14084192, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3138,13 +3153,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99fc2356a4dec042bbbdaf85bdd6377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGame: 0
+  Controller: 0
+  Credits: 0
+  Quit: 0
   IdButton: 0
   ActiveGameObject: {fileID: 0}
   DisableGameObject: {fileID: 0}
   anim: {fileID: 645392581}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
-  menu: {fileID: 0}
 --- !u!95 &645392581
 Animator:
   serializedVersion: 3
@@ -3397,7 +3415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a57153ceaa7624449c30f033a708749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityDown: 50
+  velocityDown: 70
 --- !u!1 &692602225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3703,7 +3721,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: a13ecffa3b83d6442a969cd088e9e0c7, type: 3}
-  m_Color: {r: 0.3962264, g: 0.3943574, b: 0.3943574, a: 1}
+  m_Color: {r: 0.3584906, g: 0.3567996, b: 0.3567996, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3803,13 +3821,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99fc2356a4dec042bbbdaf85bdd6377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGame: 0
+  Controller: 0
+  Credits: 0
+  Quit: 0
   IdButton: 0
   ActiveGameObject: {fileID: 0}
   DisableGameObject: {fileID: 0}
   anim: {fileID: 778152454}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
-  menu: {fileID: 0}
 --- !u!95 &778152454
 Animator:
   serializedVersion: 3
@@ -5009,7 +5030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a57153ceaa7624449c30f033a708749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityDown: 50
+  velocityDown: 70
 --- !u!1 &1164628793
 GameObject:
   m_ObjectHideFlags: 0
@@ -5288,7 +5309,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.6269411, g: 1, b: 0, a: 1}
-  m_Intensity: 0.3
+  m_Intensity: 0.2
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -5616,7 +5637,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: a13ecffa3b83d6442a969cd088e9e0c7, type: 3}
-  m_Color: {r: 0.3962264, g: 0.3943574, b: 0.3943574, a: 1}
+  m_Color: {r: 0.3584906, g: 0.3567996, b: 0.3567996, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6470,13 +6491,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99fc2356a4dec042bbbdaf85bdd6377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGame: 0
+  Controller: 0
+  Credits: 0
+  Quit: 0
   IdButton: 2
   ActiveGameObject: {fileID: 0}
   DisableGameObject: {fileID: 0}
   anim: {fileID: 1520045237}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
-  menu: {fileID: 0}
 --- !u!95 &1520045237
 Animator:
   serializedVersion: 3
@@ -6643,13 +6667,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99fc2356a4dec042bbbdaf85bdd6377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGame: 0
+  Controller: 0
+  Credits: 0
+  Quit: 0
   IdButton: 1
   ActiveGameObject: {fileID: 0}
   DisableGameObject: {fileID: 0}
   anim: {fileID: 1534720471}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
-  menu: {fileID: 0}
 --- !u!95 &1534720471
 Animator:
   serializedVersion: 3
@@ -6816,13 +6843,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99fc2356a4dec042bbbdaf85bdd6377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGame: 0
+  Controller: 0
+  Credits: 0
+  Quit: 0
   IdButton: 0
   ActiveGameObject: {fileID: 0}
   DisableGameObject: {fileID: 0}
   anim: {fileID: 1581721839}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
-  menu: {fileID: 0}
 --- !u!95 &1581721839
 Animator:
   serializedVersion: 3
@@ -7988,13 +8018,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99fc2356a4dec042bbbdaf85bdd6377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGame: 0
+  Controller: 0
+  Credits: 0
+  Quit: 0
   IdButton: 0
   ActiveGameObject: {fileID: 0}
   DisableGameObject: {fileID: 0}
   anim: {fileID: 2087664256}
   sizenormal: {x: 1, y: 1, z: 1}
   sizemodificado: {x: 1.2, y: 1.2, z: 1.2}
-  menu: {fileID: 0}
 --- !u!95 &2087664256
 Animator:
   serializedVersion: 3
@@ -8215,7 +8248,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: a13ecffa3b83d6442a969cd088e9e0c7, type: 3}
-  m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
+  m_Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
