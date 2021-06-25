@@ -22,16 +22,44 @@ public class PlayerStats : MonoBehaviour
     public static float _Addjumpheight;
     public static float _Adddamage;
 
+    private int NextSave;
+
     // Start is called before the first frame update
     void Start()
     {
-       
+        _Addlife += 50;
+
+        NextSave = PlayerPrefs.GetInt("NextSave");
+
+        if (NextSave == 1)
+        {
+            //colocar os stats salvos
+            maxlife = PlayerPrefs.GetFloat("maxlife");
+            maxspeed = PlayerPrefs.GetFloat("maxspeed");
+            maxjumpheight = PlayerPrefs.GetFloat("maxjumpheight");
+            maxdamage = PlayerPrefs.GetFloat("maxdamage");
+        }
+        else
+        {
+            NextSave++;
+
+            PlayerPrefs.SetInt("NextSave",NextSave);
+        }
+     
+
 
         //adicionando bonus
         maxlife += _Addlife;
         maxspeed += _Addspeed;
         maxjumpheight += _Addjumpheight;
         maxdamage += _Adddamage;
+
+       
+        //salvar stats
+        PlayerPrefs.SetFloat("maxlife",maxlife);
+        PlayerPrefs.SetFloat("maxspeed", maxspeed);
+        PlayerPrefs.SetFloat("maxjumpheight", maxjumpheight);
+        PlayerPrefs.SetFloat("maxdamage", maxdamage);
 
         //padrão
         life = maxlife;

@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public bool IsAttacking;
 
     [Header("          Follow Enemy")]
+    public Transform LinePosition;
     public bool targetinlineRight;
     public float F_distanceRight;
     public bool targetinlineLeft;
@@ -130,8 +131,8 @@ public class EnemyController : MonoBehaviour
     }
     private void TargetInLine()
     {
-        targetinlineRight = Physics2D.Raycast(transform.position, transform.right, F_distanceRight, targetlayer); 
-        targetinlineLeft = Physics2D.Raycast(transform.position, transform.right, F_distanceLeft, targetlayer);
+        targetinlineRight = Physics2D.Raycast(LinePosition.position, LinePosition.right, F_distanceRight, targetlayer); 
+        targetinlineLeft = Physics2D.Raycast(LinePosition.position, LinePosition.right, F_distanceLeft, targetlayer);
     }
     protected void SearchTarget()
     {
@@ -193,8 +194,8 @@ public class EnemyController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + F_distanceRight, transform.position.y, 1));
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + F_distanceLeft, transform.position.y, 1));
+        Gizmos.DrawLine(LinePosition.position, new Vector3(LinePosition.position.x + F_distanceRight, LinePosition.position.y, 1));
+        Gizmos.DrawLine(LinePosition.position, new Vector3(LinePosition.position.x + F_distanceLeft, LinePosition.position.y, 1));
 
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, maxdistance);

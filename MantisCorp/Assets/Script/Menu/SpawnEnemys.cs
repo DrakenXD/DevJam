@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 [System.Serializable]
 public class TypeEnemys
@@ -23,26 +24,48 @@ public class SpawnEnemys : MonoBehaviour
     public TypeEnemys[] enemys;
     public Transform[] enemySpawnpoint;
     public int AmountSpawn;
-    public int amount;
+    public int amountS;
     public float NextSpawn;
     private float N_S;
 
-    [SerializeField] private int AmountRounds;
+    [Header("          NumberFloor")]
+    [SerializeField] TextMeshProUGUI TxtAmountFloor;
+    [SerializeField] private int AmountFloor;
     private void Start()
     {
-        PlayerPrefs.GetInt("AmountRounds", AmountRounds);
 
-        AmountRounds++;
+        //ativar depois
+        AmountFloor = PlayerPrefs.GetInt("AmountFloor");
 
-        PlayerPrefs.SetInt("AmountRounds",AmountRounds);
+        AmountFloor++;
+
+        //AmountFloor = 0;
+
+        TxtAmountFloor.SetText(""+AmountFloor);
+
+        PlayerPrefs.SetInt("AmountFloor", AmountFloor);
+
+
+
+        //ativar depois
+        AmountSpawn = PlayerPrefs.GetInt("AmountSpawn");
+
+        AmountSpawn += 5;
+
+        //AmountSpawn =0;
+
+        PlayerPrefs.SetInt("AmountSpawn", AmountSpawn);
+
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (T_N_W <= 0)
         {         
-            if (amount < AmountSpawn )
+            if (amountS < AmountSpawn )
             {
                 if (N_S <= 0)
                 {
@@ -53,13 +76,13 @@ public class SpawnEnemys : MonoBehaviour
                         if (Random.value < enemys[i].ChMax && Random.value > enemys[i].ChMin)
                         {
                             Instantiate(enemys[i].prefabEnemy, enemySpawnpoint[indexSpawn].position, Quaternion.identity);
-                            Debug.Log(enemys[i].NameEnemy + " Spawn");
+                    
                         }
                     }
 
                     N_S = NextSpawn;
 
-                    amount++;
+                    amountS++;
                 }
                 else
                 {
@@ -67,20 +90,50 @@ public class SpawnEnemys : MonoBehaviour
                 }
             }
 
-            if (amount == AmountSpawn)
+            if (amountS == AmountSpawn)
             {
                 NexTwave = false;
                 T_N_W = TimeNextWave;
-                amount = 0;
+                amountS = 0;
             }
-
+         
         }
         else
         {
            if(NexTwave) T_N_W -= Time.deltaTime;
-
         }
+        */
+
+        if (amountS < AmountSpawn)
+        {
+            if (N_S <= 0)
+            {
+                int indexSpawn = Random.Range(0, enemySpawnpoint.Length);
+
+                for (int i = 0; i < enemys.Length; i++)
+                {
+                    if (Random.value < enemys[i].ChMax && Random.value > enemys[i].ChMin)
+                    {
+                        Instantiate(enemys[i].prefabEnemy, enemySpawnpoint[indexSpawn].position, Quaternion.identity);
+
+                    }
+                }
+
+                N_S = NextSpawn;
+
+                amountS++;
+            }
+            else
+            {
+                N_S -= Time.deltaTime;
+            }
+        }
+
+
+
     }
+
+
 
     public void Testscene()
     {

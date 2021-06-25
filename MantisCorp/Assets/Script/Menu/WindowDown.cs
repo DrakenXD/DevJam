@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class WindowDown : MonoBehaviour
 {
-    public float velocityDown;
+    public float MaxVelocity;
+    public float SpeeDown;
     public static float velocitydata;
 
     private void Update()
     {
-        if (velocitydata < velocityDown)
+        if (velocitydata < MaxVelocity)
         {
-            velocitydata += 0.1f;
+            velocitydata += SpeeDown;
         }
 
         transform.Translate(Vector2.down* velocitydata * Time.deltaTime);

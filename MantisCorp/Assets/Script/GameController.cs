@@ -31,6 +31,8 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI amountEnemys;
     public GameObject[] enemys;
 
+    [Header("          Elevator")]
+    public ElevatorFase elevator;
     private void Start()
     {
 
@@ -91,7 +93,12 @@ public class GameController : MonoBehaviour
         
         enemys = GameObject.FindGameObjectsWithTag("Enemy");
 
-        if (enemys.Length == 0) SpawnEnemys.NexTwave = true;
+        if (enemys.Length == 0)
+        {
+            elevator.GoNextFase = true;
+            //SpawnEnemys.NexTwave = true;
+        }
+            
 
         amountEnemys.SetText("" + enemys.Length);
     }

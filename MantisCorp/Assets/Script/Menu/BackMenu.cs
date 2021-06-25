@@ -12,11 +12,9 @@ public class BackMenu : MonoBehaviour
     private void Awake()
     {
         input = new InputButton();
+  
     }
-    private void Update()
-    {
-        buttoncontroller.anim.SetBool("Activate", true);
-    }
+ 
     private void OnDisable()
     {
         input.Disable();

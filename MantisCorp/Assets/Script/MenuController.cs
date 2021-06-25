@@ -8,6 +8,8 @@ public class MenuController : MonoBehaviour
     public Animator anim;
     new public string name;
     [SerializeField] private GameObject setWindowleft;
+    [SerializeField] private Animator animFade;
+    [SerializeField] private Animator animCenario;
 
     public void ActivateDown()
     {
@@ -24,11 +26,11 @@ public class MenuController : MonoBehaviour
         anim.SetBool("Creditos", _activate);
     }
 
-    public void NewScene(int amountplayers)
+    public void NewScene()
     {
-        GameController.AddPlayers = amountplayers;
+       
 
-        if(amountplayers > 1)
+        if(GameController.AddPlayers > 1)
         {
             GameController.IsMultiPlayer = true;
         }
@@ -44,7 +46,11 @@ public class MenuController : MonoBehaviour
     public void StartGame()
     {
         anim.Play("StartGame");
-
+        animCenario.Play("ElevatorStartGame");
+    }
+    public void StartFade()
+    {
+        animFade.Play("IniciandoFade");
     }
     public void SetWindow()
     {

@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
   
 
     public Vector2 movement;
-    public bool move;
-    public bool canmove;
+    private bool move;
+    public static bool canmove;
     public int amountjump;
     public bool isJumping;
     public LayerMask whatisground;
@@ -91,6 +91,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        canmove = true;
+
         Spawnpoint = GameObject.FindGameObjectWithTag("SpawnPoint").transform;
 
         T_R_P = TimeRespawnPoint;

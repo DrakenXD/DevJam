@@ -22,8 +22,9 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public bool Quit;
 
-
-    [SerializeField] private string nameScene;
+    [Header("Choose AmountPlayer")]
+    public bool SinglePlayer;
+    public bool Multi_Player;
 
     public int IdButton;
     public static int id;
@@ -61,6 +62,15 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (StartGame)
         {
             menu.StartGame();
+
+            if (SinglePlayer)
+            {
+                GameController.AddPlayers=1;
+            }
+            if (Multi_Player)
+            {
+                GameController.AddPlayers=2;
+            }
         }
 
       
