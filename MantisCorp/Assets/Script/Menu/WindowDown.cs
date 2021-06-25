@@ -5,7 +5,7 @@ using UnityEngine;
 public class WindowDown : MonoBehaviour
 {
     public float velocityDown;
-    private float velocitydata;
+    public static float velocitydata;
 
     private void Update()
     {

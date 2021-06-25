@@ -13,10 +13,17 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     [Header("Type button")]
     public bool StartGame;
-    public bool Controller;
-    public bool Credits;
+
+    public bool ActivePagController;
+    public bool DesactivePagController;
+
+    public bool ActivePagCredits;
+    public bool DesactivePagCredits;
+
     public bool Quit;
 
+
+    [SerializeField] private string nameScene;
 
     public int IdButton;
     public static int id;
@@ -33,12 +40,18 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void EnterInButton()
     {
         MenuButtonJoystick.indexUpdate = IdButton;
+        PagMenu.indexUpdate = IdButton;
+
+        anim.SetBool("Activate", true);
 
         transform.localScale = sizemodificado;
     }
     public void ExitInButton()
     {
         MenuButtonJoystick.indexLast = IdButton;
+        PagMenu.indexLast = IdButton;
+
+        anim.SetBool("Activate", false);
 
         transform.localScale = sizenormal;
     }
@@ -47,14 +60,23 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (StartGame)
         {
-
+            menu.StartGame();
         }
-         
-        if(ActiveGameObject != null)ActiveGameObject.SetActive(true);
+
+      
+
+        if(ActiveGameObject != null) ActiveGameObject.SetActive(true);
 
         if(DisableGameObject != null) DisableGameObject.SetActive(false);
 
-        MenuButtonJoystick.indexUpdate = 0;
+        
+
+        // ativar a animação de pagina dos controles
+        if (DesactivePagController) menu.ActivateControle(false);
+        if (ActivePagController) menu.ActivateControle(true);
+
+        if (ActivePagCredits) menu.ActivateCreditos(true);
+        if (DesactivePagCredits) menu.ActivateCreditos(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)

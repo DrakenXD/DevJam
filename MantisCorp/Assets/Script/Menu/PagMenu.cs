@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MenuButtonJoystick : MonoBehaviour
+public class PagMenu : MonoBehaviour
 {
+
     private InputButton input;
 
     [SerializeField] private ButtonController[] buttoncontroller;
@@ -27,6 +28,10 @@ public class MenuButtonJoystick : MonoBehaviour
 
         indexButton = buttoncontroller.Length - 1;
 
+        indexLast = 0;
+        indexUpdate = 0;
+
+
 
     }
     private void OnDisable()
@@ -44,8 +49,8 @@ public class MenuButtonJoystick : MonoBehaviour
 
 
 
+       
 
-      
 
         if (ClickUp)
         {
@@ -73,12 +78,11 @@ public class MenuButtonJoystick : MonoBehaviour
                 T_N_B = timenextbutton;
             }
 
-            
+          
         }
 
         if (ClickDown)
         {
-
             buttoncontroller[indexLast].anim.SetBool("Activate", false);
             buttoncontroller[indexLast].ExitInButton();
             buttoncontroller[indexUpdate].anim.SetBool("Activate", true);
@@ -106,41 +110,39 @@ public class MenuButtonJoystick : MonoBehaviour
             }
 
 
-           
-           
+     
 
         }
 
         T_N_B -= Time.deltaTime;
 
-        
+
     }
     public void OnButtonUp(InputAction.CallbackContext context)
     {
         ClickUp = context.ReadValueAsButton();
 
-       
 
-        
 
-        
+
+
+
     }
     public void OnButtonDown(InputAction.CallbackContext context)
     {
         ClickDown = context.ReadValueAsButton();
 
-     
 
-    
 
-     
+
+
+
     }
     public void OnButtonClick(InputAction.CallbackContext context)
     {
         ClickButton = context.ReadValueAsButton();
 
-        if(ClickButton)buttoncontroller[indexUpdate].ClickInButton();
+        if (ClickButton) buttoncontroller[indexUpdate].ClickInButton();
     }
 
-    
 }

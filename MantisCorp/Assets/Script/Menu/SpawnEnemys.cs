@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class TypeEnemys
@@ -26,13 +27,21 @@ public class SpawnEnemys : MonoBehaviour
     public float NextSpawn;
     private float N_S;
 
+    [SerializeField] private int AmountRounds;
+    private void Start()
+    {
+        PlayerPrefs.GetInt("AmountRounds", AmountRounds);
+
+        AmountRounds++;
+
+        PlayerPrefs.SetInt("AmountRounds",AmountRounds);
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (T_N_W <= 0)
-        {
-           
-
+        {         
             if (amount < AmountSpawn )
             {
                 if (N_S <= 0)
@@ -71,5 +80,10 @@ public class SpawnEnemys : MonoBehaviour
            if(NexTwave) T_N_W -= Time.deltaTime;
 
         }
+    }
+
+    public void Testscene()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

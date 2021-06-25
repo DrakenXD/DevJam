@@ -22,7 +22,7 @@ public class @InputButton : IInputActionCollection, IDisposable
                     ""name"": ""StickUp"",
                     ""type"": ""PassThrough"",
                     ""id"": ""d38ccb20-35b6-4aeb-a48f-e45f94b4dc75"",
-                    ""expectedControlType"": ""Analog"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -30,13 +30,13 @@ public class @InputButton : IInputActionCollection, IDisposable
                     ""name"": ""StickDown"",
                     ""type"": ""PassThrough"",
                     ""id"": ""266b10c6-bff6-4db2-8290-a31f5b907098"",
-                    ""expectedControlType"": ""Analog"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
                     ""name"": ""Enter"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""e2695474-992e-44f8-b818-9b54266f8e64"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -57,6 +57,28 @@ public class @InputButton : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""af3f9f50-b3e7-4a8b-b1e0-5b32e96b549b"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a63593a6-093c-4ad2-8fa6-80dab5ca6409"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""fd2d4048-34b7-4aa0-b0d0-7fa64eb8d844"",
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
@@ -68,8 +90,52 @@ public class @InputButton : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""07e2b9b8-66af-47f0-b5e1-ab05827c2dd1"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StickDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""329248c6-a599-40d9-b59f-58c2abfe06ae"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StickDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""56bdc93b-944c-49a8-9452-fde1cfadf9d2"",
                     ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0a5d146-3883-40da-8e87-349d6d1174c7"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70d27488-8038-4cb9-91ee-efb728cfd903"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

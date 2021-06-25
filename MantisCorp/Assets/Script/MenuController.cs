@@ -7,6 +7,7 @@ public class MenuController : MonoBehaviour
 {
     public Animator anim;
     new public string name;
+    [SerializeField] private GameObject setWindowleft;
 
     public void ActivateDown()
     {
@@ -39,5 +40,14 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene(name);
 
         
+    }
+    public void StartGame()
+    {
+        anim.Play("StartGame");
+
+    }
+    public void SetWindow()
+    {
+        setWindowleft.SetActive(true);
     }
 }

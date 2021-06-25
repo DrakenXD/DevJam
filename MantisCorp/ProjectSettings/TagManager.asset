@@ -11,6 +11,7 @@ TagManager:
   - Bullet
   - Shield
   - SpawnPoint
+  - Menu
   layers:
   - Default
   - TransparentFX
